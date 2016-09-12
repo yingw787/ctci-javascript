@@ -1,0 +1,42 @@
+{
+    "VI.1" : {
+            "My answer:" : "O(b), where b is the second int value.",
+        },
+    "VI.2" : {
+            "My answer:" : "O(b); b calls to power.",
+        },
+    "VI.3" : {
+            "My answer:" : "O(1); constant runtime no matter a and b.",
+        },
+    "VI.4" : {
+            "My answer:" : "O(b); number of iterations dependent on sum dependent on b.",
+            "Correct answer:" : "O(a/b); while loop iterates count times, var count is a/b.",
+        },
+    "VI.5" : {
+            "My answer:" : "O(log n); execute one branch at any given time; number of iterations dependent on power of 2 n is.",
+    },
+    "VI.6" : {
+            "My answer:" : "O(sqrt(n)); number of iterations dependent on guess <= sqrt(n).",
+    },
+    "VI.7" : {
+            "My answer:" : "O(N); traverse the entire tree in order to find it.",
+    },
+    "VI.8" : {
+            "My answer:" : "O(2^N); worst-case need to search the entire tree for the value.",
+            "Correct Answer:" : "O(N), search through N nodes.",
+    },
+    "VI.9" : {
+            "My answer:" : "O(N!); copying array of length N requires making arrays of length N, N-1, N-2, ...",
+            "Correct Answer:" : "O(N^2); sum of N, N-1, N-2, ... 1 is N(N+1)/2, so it's N^2.",
+    },
+    "VI.10" : {
+            "My answer:" : "O(log N); 1000 takes 4 iterations, 100 takes 3, etc. so takes log10(N) iterations.",
+    },
+    "VI.11" : {
+            "My answer:" : "O(N), remaining is the only variable value here, and it is embedded within a const for loop",
+            "Correct Answer:" : "O(k(c^k)), where k is length of string and c is number of characters in alphabet. Takes O(c^k) time in order to generate each string, then need to check each string is sorted, which is O(k) time.",
+    },
+    "VI.12" : {
+            "My answer:" : "O((a + b) * (log b)), mergesort is O(b log b), binary search is O(log b) embedded within for loop of a",
+    },
+}
