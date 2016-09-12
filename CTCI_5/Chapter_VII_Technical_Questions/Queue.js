@@ -2,7 +2,7 @@
 'use strict';
 
 const Queue = function() {
-    this.first = null;
+    this.head = null;
     this.size = 0;
 };
 
@@ -12,12 +12,12 @@ const Node = function(queueData) {
 };
 
 Queue.prototype.enqueue = function(queueData) {
-    let node = new Node(queueData);
+    const node = new Node(queueData);
 
-    if (!this.first) {
-        this.first = node;
+    if (!this.head) {
+        this.head = node;
     } else {
-        let n = this.first;
+        let n = this.head;
         while (n.next) {
             n = n.next;
         }
@@ -29,10 +29,10 @@ Queue.prototype.enqueue = function(queueData) {
 };
 
 Queue.prototype.dequeue = function() {
-    const temp = this.first;
-    this.first = this.first.next;
+    const dequeuedNode = this.head;
+    this.head = this.head.next;
     this.size -= 1;
-    return temp;
+    return dequeuedNode;
 };
 
 module.exports = Queue;

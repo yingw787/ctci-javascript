@@ -22,8 +22,7 @@
     "eslint-plugin-class-property": "^1.0.1",
     "eslint-plugin-lodash": "^1.10.3",
     "eslint-plugin-mocha": "^4.5.1",
-    "eslint-plugin-react": "^6.2.0",
-    "lodash": "^4.15.0"
+    "eslint-plugin-react": "^6.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0"
