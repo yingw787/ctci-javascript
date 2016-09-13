@@ -32,4 +32,23 @@ describe('BinarySearchTree', function() {
         const data = tree.lookup(15);
         assert.equal(data, -1);
     });
+    it('should return 4 5 6 upon traversal after insertion of 5 6 4.', function() {
+        let tree = new BinarySearchTree();
+        tree.insert(5, '5');
+        tree.insert(6, '6');
+        tree.insert(4, '4');
+        const values = tree.traverse();
+        assert.equal(JSON.stringify(values), JSON.stringify([4, 5, 6]));
+    });
+    it('should be able to add values and then remove them, and still traverse in order.', function() {
+        let tree = new BinarySearchTree();
+        tree.insert(5, '5');
+        tree.insert(6, '6');
+        tree.insert(4, '4');
+        const values = tree.traverse();
+        assert.equal(JSON.stringify(values), JSON.stringify([4, 5, 6]));
+        tree.remove(5);
+        const newValues = tree.traverse();
+        assert.equal(JSON.stringify(newValues), JSON.stringify([4, 6]));
+    });
 });
