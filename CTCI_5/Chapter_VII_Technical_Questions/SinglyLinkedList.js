@@ -32,7 +32,7 @@ SinglyLinkedList.prototype.get = function(index) {
     } else {
         let currentIndex = 0;
         let n = this.head;
-        while (n.next && currentIndex < index) {
+        while (n.next !== null && currentIndex < index) {
             n = n.next;
             currentIndex += 1;
         }
@@ -51,17 +51,19 @@ SinglyLinkedList.prototype.remove = function(index) {
         let currentIndex = 0;
         let n = this.head;
         if (currentIndex === index) {
-            if (n.next) {
+            if (n.next !== null) {
                 this.head = this.head.next;
             } else {
                 this.head = null;
             }
+            this.size -= 1;
             return n;
         } else {
             while (n.next) {
                 if (currentIndex + 1 === index) {
                     let temp = n.next;
                     n.next = n.next.next;
+                    this.size -= 1;
                     return temp;
                 }
                 currentIndex += 1;
