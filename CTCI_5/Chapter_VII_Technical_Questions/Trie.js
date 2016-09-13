@@ -1,7 +1,6 @@
 'use strict';
 
 const TrieNode = require('./TrieNode');
-const Stack = require('./Stack');
 
 const Trie = function(node) {
     this.root = new TrieNode('');
