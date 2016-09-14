@@ -4,6 +4,8 @@
 'use strict';
 
 module.exports = {
+    // O(N) time
+    // O(N) space
     chapterOneProblemSixBruteForceSolution: toBeCompressedString => {
         let compressedString = '';
         for (let i = 0; i < toBeCompressedString.length; i++) {
