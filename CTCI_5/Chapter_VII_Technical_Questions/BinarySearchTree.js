@@ -17,18 +17,18 @@ class BinarySearchTree {
     insert(key, nodeData) {
         const toBeInsertedNode = new BinarySearchTreeNode(key, nodeData);
 
-        function insertR(currentNode, newNode) {
+        function recursivelyLookForInsertSpot(currentNode, newNode) {
             if (newNode.key < currentNode.key) {
                 if (currentNode.leftChild === null) {
                     currentNode.leftChild = newNode;
                 } else {
-                    insertR(currentNode.leftChild, newNode);
+                    recursivelyLookForInsertSpot(currentNode.leftChild, newNode);
                 }
             } else {
                 if (currentNode.rightChild === null) {
                     currentNode.rightChild = newNode;
                 } else {
-                    insertR(currentNode.rightChild, newNode);
+                    recursivelyLookForInsertSpot(currentNode.rightChild, newNode);
                 }
             }
             return;
@@ -37,7 +37,7 @@ class BinarySearchTree {
         if (this.root === null) {
             this.root = toBeInsertedNode;
         } else {
-            insertR(this.root, toBeInsertedNode);
+            recursivelyLookForInsertSpot(this.root, toBeInsertedNode);
         }
     }
     lookupIfExists(lookupKey) {

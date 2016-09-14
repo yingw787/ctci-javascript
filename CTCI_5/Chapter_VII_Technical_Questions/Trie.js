@@ -1,6 +1,9 @@
 'use strict';
 
-const TrieNode = require('./TrieNode');
+const TrieNode = function(character) {
+    this.data = character;
+    this.children = [];
+};
 
 const Trie = function(node) {
     this.root = new TrieNode('');

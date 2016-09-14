@@ -17,73 +17,68 @@ const generateHashCodeFromString = string => {
     return hash;
 };
 
-const HashTable = function(hashTableSize) {
-    this.size = hashTableSize || 10;
-    this.hashTable = {};
+class HashTable {
+    constructor(hashTableSize) {
+        this.size = hashTableSize || 10;
+        this.hashTable = {};
 
-    for (let i = 0; i < this.size; i++) {
-        this.hashTable[i] = new SinglyLinkedList();
-    }
-};
-
-HashTable.prototype.insert = function(object) {
-    // every object has a key and a value. Error testing beyond what I want to test here.
-    const hashCode = generateHashCodeFromString(JSON.stringify(object.key));
-    const index = hashCode % this.size;
-
-    this.hashTable[index].append(object);
-};
-
-HashTable.prototype.get = function(key) {
-    const hashCode = generateHashCodeFromString(JSON.stringify(key));
-    const index = hashCode % this.size;
-
-    let list = [];
-    for (let i = 0; i < this.hashTable[index].size; i++) {
-        list.push(this.hashTable[index].get(i));
-    }
-
-    for (let j = 0; j < list.length; j++) {
-        if (list[j].data.key === key) {
-            return list[j].data;
+        for (let i = 0; i < this.size; i++) {
+            this.hashTable[i] = new SinglyLinkedList();
         }
     }
-
-    return null;
-};
-
-HashTable.prototype.contains = function(key) {
-    const hashCode = generateHashCodeFromString(JSON.stringify(key));
-    const index = hashCode % this.size;
-
-    let list = [];
-    for (let i = 0; i < this.hashTable[index].size; i++) {
-        list.push(this.hashTable[index].get(i));
+    insert(object) {
+        const index = this._getIndex(object.key);
+        this.hashTable[index].append(object);
     }
+    getIfExists(key) {
+        const index = this._getIndex(key);
 
-    for (let j = 0; j < list.length; j++) {
-        if (list[j].data.key === key) {
-            return true;
+        let list = [];
+        for (let i = 0; i < this.hashTable[index].size; i++) {
+            list.push(this.hashTable[index].get(i));
+        }
+
+        for (let j = 0; j < list.length; j++) {
+            if (list[j].data.key === key) {
+                return list[j].data;
+            }
+        }
+
+        return null;
+    }
+    contains(key) {
+        const index = this._getIndex(key);
+
+        let list = [];
+        for (let i = 0; i < this.hashTable[index].size; i++) {
+            list.push(this.hashTable[index].get(i));
+        }
+
+        for (let j = 0; j < list.length; j++) {
+            if (list[j].data.key === key) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    remove(key) {
+        const index = this._getIndex(key);
+
+        let list = [];
+        for (let i = 0; i < this.hashTable[index].size; i++) {
+            list.push(this.hashTable[index].get(i));
+        }
+
+        for (let j = 0; j < list.length; j++) {
+            if (list[j].data.key === key) {
+                this.hashTable[index].remove(j);
+            }
         }
     }
-
-    return false;
-};
-
-HashTable.prototype.remove = function(key) {
-    const hashCode = generateHashCodeFromString(JSON.stringify(key));
-    const index = hashCode % this.size;
-
-    let list = [];
-    for (let i = 0; i < this.hashTable[index].size; i++) {
-        list.push(this.hashTable[index].get(i));
+    _getIndex(key) {
+        return generateHashCodeFromString(JSON.stringify(key)) % this.size;
     }
-
-    for (let j = 0; j < list.length; j++) {
-        if (list[j].data.key === key) {
-            this.hashTable[index].remove(j);
-        }
-    }
-};
+}
 
 module.exports = HashTable;

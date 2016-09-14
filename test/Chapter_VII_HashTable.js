@@ -20,13 +20,13 @@ describe('HashTable', function() {
     it('should be able to retrieve values', function() {
         const hashTable = new HashTable();
         hashTable.insert({key: 'N9E 4X6', value: '1489 Auburn Lane'});
-        const object = hashTable.get('N9E 4X6');
+        const object = hashTable.getIfExists('N9E 4X6');
         assert.equal(JSON.stringify(object), JSON.stringify({key: 'N9E 4X6', value: '1489 Auburn Lane'}));
     });
     it('should be able to remove values', function() {
         const hashTable = new HashTable();
         hashTable.insert({key: 'N9E 4X6', value: '1489 Auburn Lane'});
-        const object = hashTable.get('N9E 4X6');
+        const object = hashTable.getIfExists('N9E 4X6');
         assert.equal(JSON.stringify(object), JSON.stringify({key: 'N9E 4X6', value: '1489 Auburn Lane'}));
         hashTable.remove('N9E 4X6');
         assert.equal(hashTable.contains('N9E 4X6'), false);

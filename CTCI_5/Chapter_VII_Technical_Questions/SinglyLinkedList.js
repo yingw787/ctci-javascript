@@ -1,77 +1,76 @@
 'use strict';
 
-const SinglyLinkedList = function() {
-    this.head = null;
-    this.size = 0;
-};
-
-const Node = function(singlyLinkedListData) {
+const SinglyLinkedListNode = function(singlyLinkedListData) {
     this.data = singlyLinkedListData;
     this.next = null;
 };
 
-SinglyLinkedList.prototype.append = function(singlyLinkedListData) {
-    const node = new Node(singlyLinkedListData);
-
-    if (this.head === null) {
-        this.head = node;
-    } else {
-        let n = this.head;
-        while (n.next) {
-            n = n.next;
-        }
-        n.next = node;
+class SinglyLinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
     }
-    this.size += 1;
-    return node;
-};
+    append(singlyLinkedListData) {
+        const node = new SinglyLinkedListNode(singlyLinkedListData);
 
-SinglyLinkedList.prototype.get = function(index) {
-    if (this.size < index + 1) {
-        throw new Error('invalid index');
-    } else {
-        let currentIndex = 0;
-        let n = this.head;
-        while (n.next !== null && currentIndex < index) {
-            n = n.next;
-            currentIndex += 1;
-        }
-        if (currentIndex === index) {
-            return n;
+        if (this.head === null) {
+            this.head = node;
         } else {
-            return n.next;
-        }
-    }
-};
-
-SinglyLinkedList.prototype.remove = function(index) {
-    if (this.size < index + 1) {
-        throw new Error('invalid index');
-    } else {
-        let currentIndex = 0;
-        let n = this.head;
-        if (currentIndex === index) {
-            if (n.next !== null) {
-                this.head = this.head.next;
-            } else {
-                this.head = null;
-            }
-            this.size -= 1;
-            return n;
-        } else {
+            let n = this.head;
             while (n.next) {
-                if (currentIndex + 1 === index) {
-                    let temp = n.next;
-                    n.next = n.next.next;
-                    this.size -= 1;
-                    return temp;
-                }
-                currentIndex += 1;
                 n = n.next;
             }
-            throw new Error('uncaught error, exited loop');
+            n.next = node;
+        }
+        this.size += 1;
+        return node;
+    }
+    get(index) {
+        if (this.size < index + 1) {
+            throw new Error('invalid index');
+        } else {
+            let currentIndex = 0;
+            let n = this.head;
+            while (n.next !== null && currentIndex < index) {
+                n = n.next;
+                currentIndex += 1;
+            }
+            if (currentIndex === index) {
+                return n;
+            } else {
+                return n.next;
+            }
         }
     }
-};
+    remove(index) {
+        if (this.size < index + 1) {
+            throw new Error('invalid index');
+        } else {
+            let currentIndex = 0;
+            let n = this.head;
+            if (currentIndex === index) {
+                if (n.next !== null) {
+                    this.head = this.head.next;
+                } else {
+                    this.head = null;
+                }
+                this.size -= 1;
+                return n;
+            } else {
+                while (n.next) {
+                    if (currentIndex + 1 === index) {
+                        let temp = n.next;
+                        n.next = n.next.next;
+                        this.size -= 1;
+                        return temp;
+                    }
+                    currentIndex += 1;
+                    n = n.next;
+                }
+                throw new Error('uncaught error, exited loop');
+            }
+        }
+    }
+}
 
 module.exports = SinglyLinkedList;
