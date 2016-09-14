@@ -16,3 +16,10 @@ describe('chapterOneProblemOneImprovedSolution', function() {
         assert.equal(result, false);
     });
 });
+
+describe('chapterOneProblemOneBookSolution', function() {
+    it('should give correct value here', function() {
+        const result = Problem_1.chapterOneProblemOneBookSolution('aaa');
+        assert.equal(result, false);
+    });
+});

@@ -37,4 +37,19 @@ module.exports = {
         }
         return true;
     },
+
+    // Big O Time: O(N)
+    // Big O Space: O(1)
+    // TODO: come back to this when I understand bit manipulation
+    chapterOneProblemOneBookSolution: stringInput => {
+        let checker = 0;
+        for (let i = 0; i < stringInput.length; i++) {
+            const val = stringInput.charAt(i) - 'a';
+            if ((checker && (1 << val)) > 0) {
+                return false;
+            }
+            checker |= (1 << val);
+        }
+        return true;
+    },
 };
