@@ -3,175 +3,180 @@
 
 'use strict';
 
-const BSTNode = require('./BinarySearchTreeNode');
-const BinarySearchTree = function() {
-    this.root = null;
+const BinarySearchTreeNode = function(key, nodeData) {
+    this.data = nodeData;
+    this.key = key;
+    this.leftChild = null;
+    this.rightChild = null;
 };
 
-BinarySearchTree.prototype.insert = function(key, nodeData) {
-    const newNode = new BSTNode(key, nodeData);
-    if (this.root === null) {
-        this.root = newNode;
-    } else {
-        insertR(this.root, newNode);
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
     }
-};
+    insert(key, nodeData) {
+        const toBeInsertedNode = new BinarySearchTreeNode(key, nodeData);
 
-function insertR(currentNode, newNode) {
-    if (newNode.key < currentNode.key) {
-        if (currentNode.leftChild === null) {
-            currentNode.leftChild = newNode;
-        } else {
-            insertR(currentNode.leftChild, newNode);
-        }
-    } else {
-        if (currentNode.rightChild === null) {
-            currentNode.rightChild = newNode;
-        } else {
-            insertR(currentNode.rightChild, newNode);
-        }
-    }
-    return;
-}
-
-BinarySearchTree.prototype.lookup = function(lookupKey) {
-    return lookupR(this.root, lookupKey);
-};
-
-function lookupR(currentNode, key) {
-    if (currentNode.key === key) {
-        return currentNode.data;
-    } else if (key < currentNode.key) {
-        if (currentNode.leftChild === null) {
-            return -1;
-        } else {
-            return lookupR(currentNode.leftChild, key);
-        }
-    } else {
-        if (currentNode.rightChild === null) {
-            return -1;
-        } else {
-            return lookupR(currentNode.rightChild, key);
-        }
-    }
-}
-
-BinarySearchTree.prototype.traverse = function() {
-    let values = [];
-
-    function inOrderTraversal(node) {
-        if (node) {
-            if (node.leftChild !== null) {
-                inOrderTraversal(node.leftChild);
+        function insertR(currentNode, newNode) {
+            if (newNode.key < currentNode.key) {
+                if (currentNode.leftChild === null) {
+                    currentNode.leftChild = newNode;
+                } else {
+                    insertR(currentNode.leftChild, newNode);
+                }
+            } else {
+                if (currentNode.rightChild === null) {
+                    currentNode.rightChild = newNode;
+                } else {
+                    insertR(currentNode.rightChild, newNode);
+                }
             }
-            values.push(node.key);
-            if (node.rightChild !== null) {
-                inOrderTraversal(node.rightChild);
+            return;
+        }
+
+        if (this.root === null) {
+            this.root = toBeInsertedNode;
+        } else {
+            insertR(this.root, toBeInsertedNode);
+        }
+    }
+    lookupIfExists(lookupKey) {
+        function recursiveLookup(currentNode, key) {
+            if (currentNode.key === key) {
+                return currentNode.data;
+            } else if (key < currentNode.key) {
+                if (currentNode.leftChild === null) {
+                    return null;
+                } else {
+                    return recursiveLookup(currentNode.leftChild, key);
+                }
+            } else {
+                if (currentNode.rightChild === null) {
+                    return null;
+                } else {
+                    return recursiveLookup(currentNode.rightChild, key);
+                }
             }
         }
+
+        return recursiveLookup(this.root, lookupKey);
     }
+    inOrderTraversal() {
+        const values = [];
 
-    inOrderTraversal(this.root);
-    return values;
-};
-
-BinarySearchTree.prototype.remove = function(key) {
-    let found = false;
-    let parentNode = null;
-    let currentNode = this.root;
-    let numberOfChildren = null;
-    let replacementNode = null;
-    let replacementParentNode = null;
-
-    while (!found && currentNode) {
-        if (key < currentNode.key) {
-            parentNode = currentNode;
-            currentNode = currentNode.leftChild;
-        } else if (key > currentNode.key) {
-            parentNode = currentNode;
-            currentNode = currentNode.rightChild;
-        } else {
-            found = true;
+        function recursiveInOrderTraversal(node) {
+            if (node) {
+                if (node.leftChild !== null) {
+                    recursiveInOrderTraversal(node.leftChild);
+                }
+                values.push(node.key);
+                if (node.rightChild !== null) {
+                    recursiveInOrderTraversal(node.rightChild);
+                }
+            }
         }
+
+        recursiveInOrderTraversal(this.root);
+        return values;
     }
+    remove(key) {
+        let found = false;
+        let parentNode = null;
+        let currentNode = this.root;
 
-    if (found) {
-        numberOfChildren = (currentNode.leftChild !== null ? 1 : 0) + (currentNode.rightChild !== null ? 1 : 0);
+        while (!found && currentNode) {
+            if (key < currentNode.key) {
+                parentNode = currentNode;
+                currentNode = currentNode.leftChild;
+            } else if (key > currentNode.key) {
+                parentNode = currentNode;
+                currentNode = currentNode.rightChild;
+            } else {
+                found = true;
+            }
+        }
 
-        if (currentNode === this.root) {
-            switch (numberOfChildren) {
-                case 0:
-                    this.root = null;
-                    break;
-                case 1:
-                    this.root = (currentNode.rightChild === null ? currentNode.leftChild : currentNode.rightChild);
-                    break;
-                case 2:
-                    replacementNode = this.root.leftChild;
+        let numberOfChildren = null;
+        let replacementNode = null;
+        let replacementParentNode = null;
 
-                    while (replacementNode.rightChild !== null) {
-                        replacementParentNode = replacementNode;
-                        replacementNode = replacementNode.rightChild;
-                    }
+        if (found) {
+            numberOfChildren = (currentNode.leftChild !== null) + (currentNode.rightChild !== null);
 
-                    if (replacementParentNode !== null) {
+            if (currentNode === this.root) {
+                switch (numberOfChildren) {
+                    case 0:
+                        this.root = null;
+                        break;
+                    case 1:
+                        this.root = (currentNode.rightChild === null ? currentNode.leftChild : currentNode.rightChild);
+                        break;
+                    case 2:
+                        replacementNode = this.root.leftChild;
+
+                        while (replacementNode.rightChild !== null) {
+                            replacementParentNode = replacementNode;
+                            replacementNode = replacementNode.rightChild;
+                        }
+
+                        if (replacementParentNode !== null) {
+                            replacementParentNode.rightChild = replacementNode.leftChild;
+                            replacementNode.rightChild = this.root.rightChild;
+                            replacementNode.leftChild = this.root.leftChild;
+                        } else {
+                            replacementNode.rightChild = this.root.rightChild;
+                        }
+
+                        this.root = replacementNode;
+                        break;
+                    default:
+                        throw new Error('Unexpected code path hit. All children should be handled within switch statement.');
+                }
+            } else {
+                switch (numberOfChildren) {
+                    case 0:
+                        if (currentNode.key < parentNode.key) {
+                            parentNode.leftChild = null;
+                        } else {
+                            parentNode.rightChild = null;
+                        }
+                        break;
+                    case 1:
+                        if (currentNode.key < parentNode.key) {
+                            parentNode.leftChild = (currentNode.leftChild === null ? currentNode.rightChild : currentNode.leftChild);
+                        } else {
+                            parentNode.rightChild = (currentNode.leftChild === null ? currentNode.rightChild : currentNode.leftChild);
+                        }
+                        break;
+                    case 2:
+                        replacementNode = currentNode.leftChild;
+                        replacementParentNode = currentNode;
+
+                        while (replacementNode.rightChild !== null) {
+                            replacementParentNode = replacementNode;
+                            replacementNode = replacementNode.rightChild;
+                        }
+
                         replacementParentNode.rightChild = replacementNode.leftChild;
-                        replacementNode.rightChild = this.root.rightChild;
-                        replacementNode.leftChild = this.root.leftChild;
-                    } else {
-                        replacementNode.rightChild = this.root.rightChild;
-                    }
 
-                    this.root = replacementNode;
-                    break;
-                default:
-                    throw new Error('unhandled error');
-            }
-        } else {
-            switch (numberOfChildren) {
-                case 0:
-                    if (currentNode.key < parentNode.key) {
-                        parentNode.leftChild = null;
-                    } else {
-                        parentNode.rightChild = null;
-                    }
-                    break;
-                case 1:
-                    if (currentNode.key < parentNode.key) {
-                        parentNode.leftChild = (currentNode.leftChild === null ? currentNode.rightChild : currentNode.leftChild);
-                    } else {
-                        parentNode.rightChild = (currentNode.leftChild === null ? currentNode.rightChild : currentNode.leftChild);
-                    }
-                    break;
-                case 2:
-                    replacementNode = currentNode.leftChild;
-                    replacementParentNode = currentNode;
+                        replacementNode.rightChild = currentNode.rightChild;
+                        replacementNode.leftChild = currentNode.leftChild;
 
-                    while (replacementNode.rightChild !== null) {
-                        replacementParentNode = replacementNode;
-                        replacementNode = replacementNode.rightChild;
-                    }
-
-                    replacementParentNode.rightChild = replacementNode.leftChild;
-
-                    replacementNode.rightChild = currentNode.rightChild;
-                    replacementNode.leftChild = currentNode.leftChild;
-
-                    if (currentNode.key < parentNode.key) {
-                        parentNode.leftChild = replacementNode;
-                    } else {
-                        parentNode.rightChild = replacementNode;
-                    }
-                    break;
-                default:
-                    throw new Error('unhandled error');
+                        if (currentNode.key < parentNode.key) {
+                            parentNode.leftChild = replacementNode;
+                        } else {
+                            parentNode.rightChild = replacementNode;
+                        }
+                        break;
+                    default:
+                        throw new Error('Unexpected code path hit. All children should be handled within switch statement.');
+                }
             }
         }
     }
-};
-
-BinarySearchTree.prototype.getRoot = function() {
-    return this.root;
-};
+    getRoot() {
+        return this.root;
+    }
+}
 
 module.exports = BinarySearchTree;
