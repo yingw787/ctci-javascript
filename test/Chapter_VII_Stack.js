@@ -8,6 +8,6 @@ describe('Stack', function() {
         const stack = new Stack();
         stack.push('hi');
         const value = stack.pop();
-        assert.equal(value.data, 'hi');
+        assert.equal(value, 'hi');
     });
 });

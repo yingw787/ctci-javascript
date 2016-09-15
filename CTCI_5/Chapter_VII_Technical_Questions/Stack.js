@@ -23,7 +23,7 @@ class Stack {
         const topBeforeChange = this.top;
         this.top = this.top.previous;
         this.size -= 1;
-        return topBeforeChange;
+        return topBeforeChange.data;
     }
 }
 
