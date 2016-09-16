@@ -25,6 +25,9 @@ class Stack {
         this.size -= 1;
         return topBeforeChange.data;
     }
+    peek() {
+        return this.top;
+    }
 }
 
 module.exports = Stack;
