@@ -27,27 +27,6 @@ function _markHeights(binaryTreeRootNode) {
     recursiveInOrderTraversal(binaryTreeRootNode);
 }
 
-
-// TESTING DELETE WHEN DONE
-function _inOrderTraversalOfNodes(binaryTreeRootNode) {
-    const values = [];
-
-    function recursiveInOrderTraversal(node) {
-        if (node) {
-            if (node.leftChild !== null) {
-                recursiveInOrderTraversal(node.leftChild);
-            }
-            values.push(node);
-            if (node.rightChild !== null) {
-                recursiveInOrderTraversal(node.rightChild);
-            }
-        }
-    }
-
-    recursiveInOrderTraversal(binaryTreeRootNode);
-    return values;
-}
-
 function _isTreeBalanced(binaryTreeRootNode) {
 
     function recursiveInOrderTraversal(node) {
@@ -75,11 +54,6 @@ module.exports = {
     chapterFourProblemFourBruteForceSolution: rootNode => {
 
         _markHeights(rootNode);
-
-        const arrayOfBinaryTreeNodes = _inOrderTraversalOfNodes(rootNode);
-
-        console.log('arrayOfBinaryTreeNodes: ', arrayOfBinaryTreeNodes);
-
         return _isTreeBalanced(rootNode);
     },
 };
