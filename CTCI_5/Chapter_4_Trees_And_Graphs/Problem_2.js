@@ -15,7 +15,7 @@ function _recursivelyBuildSubTree(sortedSubArray, binarySearchTree) {
     const leftSubArray = sortedSubArray.slice(0, rootIndex);
     const rightSubArray = sortedSubArray.slice(rootIndex + 1, sortedSubArray.length);
 
-    binarySearchTree.insert(sortedSubArray[rootIndex]);
+    binarySearchTree.insert(sortedSubArray[rootIndex], sortedSubArray[rootIndex]);
     _recursivelyBuildSubTree(leftSubArray, binarySearchTree);
     _recursivelyBuildSubTree(rightSubArray, binarySearchTree);
 }
