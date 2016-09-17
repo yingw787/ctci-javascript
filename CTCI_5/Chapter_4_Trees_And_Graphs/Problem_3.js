@@ -55,7 +55,6 @@ module.exports = {
                 depthLinkedListObject[depth] = singlyLinkedList;
             }
         }
-        console.log('depthLinkedListObject: ', depthLinkedListObject);
         return depthLinkedListObject;
     },
 };
