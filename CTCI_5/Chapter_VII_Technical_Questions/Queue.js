@@ -33,6 +33,9 @@ class Queue {
         this.size -= 1;
         return dequeuedNode;
     }
+    isEmpty() {
+        return this.head === null;
+    }
 }
 
 module.exports = Queue;
