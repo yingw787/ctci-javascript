@@ -63,17 +63,21 @@ describe('chapterThreeProblemSixBruteForceSolution', function() {
         }
 
         while (!dogCatQueue.isEmpty()) {
-            const catObject = dogCatQueue.dequeueCat();
-            if (catObject === null) { break; }
-            const testCatObject = catArray.shift();
-            assert.equal(catObject.data, testCatObject.data);
-            assert.equal(catObject.type, testCatObject.type);
+            if (catArray.length !== 0) {
+                const catObject = dogCatQueue.dequeueCat();
+                if (catObject === null) { break; }
+                const testCatObject = catArray.shift();
+                assert.equal(catObject.data, testCatObject.data);
+                assert.equal(catObject.type, testCatObject.type);
+            }
 
-            const dogObject = dogCatQueue.dequeueDog();
-            if (dogObject === null) { break; }
-            const testDogObject = dogArray.shift();
-            assert.equal(dogObject.data, testDogObject.data);
-            assert.equal(dogObject.type, testDogObject.type);
+            if (dogArray.length !== 0) {
+                const dogObject = dogCatQueue.dequeueDog();
+                if (dogObject === null) { break; }
+                const testDogObject = dogArray.shift();
+                assert.equal(dogObject.data, testDogObject.data);
+                assert.equal(dogObject.type, testDogObject.type);
+            }
         }
     });
 });
