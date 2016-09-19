@@ -4,7 +4,7 @@ const assert = chai.assert;
 const Problem_2 = require('../CTCI_5/Chapter_4_Trees_And_Graphs/Problem_2');
 const Problem_8 = require('../CTCI_5/Chapter_4_Trees_And_Graphs/Problem_8');
 
-describe('chapterFourProblemSevenBruteForceSolution', function() {
+describe('chapterFourProblemEightBruteForceSolution', function() {
     it('should give correct answer here', function() {
         const sortedArray = [2, 4, 7, 50, 55, 87, 90];
         const binarySearchTree = Problem_2.chapterFourProblemTwoBruteForceSolution(sortedArray);
