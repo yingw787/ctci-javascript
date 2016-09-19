@@ -2,7 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
 
-// const Problem_2 = require('../CTCI_5/Chapter_4_Trees_And_Graphs/Problem_2');
 const Problem_7 = require('../CTCI_5/Chapter_4_Trees_And_Graphs/Problem_7');
 
 describe('chapterFourProblemSevenBruteForceSolution', function() {

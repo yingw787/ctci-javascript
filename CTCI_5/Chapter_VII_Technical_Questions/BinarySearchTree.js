@@ -61,6 +61,27 @@ class BinarySearchTree {
 
         return recursiveLookup(this.root, lookupKey);
     }
+    lookupNodeIfExists(lookupKey) {
+        function recursiveLookup(currentNode, key) {
+            if (currentNode.key === key) {
+                return currentNode;
+            } else if (key < currentNode.key) {
+                if (currentNode.leftChild === null) {
+                    return null;
+                } else {
+                    return recursiveLookup(currentNode.leftChild, key);
+                }
+            } else {
+                if (currentNode.rightChild === null) {
+                    return null;
+                } else {
+                    return recursiveLookup(currentNode.rightChild, key);
+                }
+            }
+        }
+
+        return recursiveLookup(this.root, lookupKey);
+    }
     inOrderTraversal() {
         const values = [];
 

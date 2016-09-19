@@ -2,7 +2,6 @@
     You are given a list of projects and a list of dependencies (which is a list of pairs of projects, where the first project is dependent on the second project). All of a project's dependencies must be built before the project is. Find a build order that will allow the projects to be built. If there is no valid build order, return an error.
 */
 'use strict';
-// use a directed graph, add nodes to directed graph, conduct breadth first search, if loop return error.
 
 const DirectedGraph = require('../Chapter_VII_Technical_Questions/DirectedGraph');
 const Queue = require('../Chapter_VII_Technical_Questions/Queue');
@@ -22,9 +21,6 @@ function _cyclesExist(listOfDependencies) {
         listOfInvertedDependencies.push([listOfDependencies[i][1], listOfDependencies[i][0]]);
     }
 
-    console.log('listOfDependencies: ', listOfDependencies);
-    console.log('listOfInvertedDependencies: ', listOfInvertedDependencies);
-
     for (let i = 0; i < listOfInvertedDependencies.length; i++) {
         for (let j = 0; j < listOfDependencies.length; j++) {
             if (JSON.stringify(listOfInvertedDependencies[i]) === JSON.stringify(listOfDependencies[j])) {
@@ -32,8 +28,6 @@ function _cyclesExist(listOfDependencies) {
             }
         }
     }
-
-    console.log('FAILED');
     return false;
 }
 
