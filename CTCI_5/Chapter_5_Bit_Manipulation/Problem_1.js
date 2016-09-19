@@ -5,6 +5,14 @@
 
 const assert = require('assert');
 
+function _checkStringForInvalidInput(binaryString) {
+    for (let i = 0; i < binaryString.length; i++) {
+        if (binaryString.charAt(i) !== '0' && binaryString.charAt(i) !== '1') {
+            throw new Error('invalid binary string.');
+        }
+    }
+}
+
 function _clearBit(number, i) {
     const mask = ~(1 << i);
     return (number & mask).toString(2);
@@ -24,6 +32,9 @@ module.exports = {
         assert(typeof M === 'string');
         assert(typeof i === 'number');
         assert(typeof j === 'number');
+
+        _checkStringForInvalidInput(N);
+        _checkStringForInvalidInput(M);
 
         let parsedN = _clearBits(N, i, j);
         let result = (parseInt(parsedN, 2) | (parseInt(M, 2) << i)).toString(2);
