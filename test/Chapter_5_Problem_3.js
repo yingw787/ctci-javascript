@@ -23,8 +23,4 @@ describe('chapterFiveProblemThreeBruteForceSolution', function() {
         const value = '11011101111';
         assert.equal(Problem_3.chapterFiveProblemThreeBruteForceSolution(value), 8);
     });
-    // it('should return 0.11 for 0.75', function() {
-    //     const value = 0.75;
-    //     assert.equal(Problem_3.chapterFiveProblemThreeBruteForceSolution(value), '0.11');
-    // });
 });
