@@ -5,11 +5,6 @@
 
 const assert = require('assert');
 
-// function _convertDecimalToTwosComplementString(decimal) {
-//     console.log('decimal: ', decimal);
-//     return (decimal >>> 0).toString(2);
-// }
-
 function _clearBit(number, i) {
     const mask = ~(1 << i);
     return (number & mask).toString(2);
