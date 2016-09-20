@@ -3,19 +3,27 @@
 */
 'use strict';
 
-module.exports = {
-    // O(N) space
-    // O(N) time
-    chapterTwoProblemEightBruteForceSolution: circularLinkedList => {
-        const buffer = [];
-        let currentNode = circularLinkedList.head;
-        while (currentNode) {
-            if (buffer.indexOf(currentNode) !== -1) {
-                return currentNode;
-            } else {
-                currentNode = currentNode.next;
-            }
+const assert = require('assert');
+
+// O(N) space
+// O(N) time
+// REDO (O(LOOP_SIZE - K) space, O(1) time)
+// TODO: WRITE TESTS
+function chapterTwoProblemEightBruteForceSolution(circularLinkedList) {
+    assert(typeof circularLinkedList === 'object');
+
+    const buffer = [];
+    let currentNode = circularLinkedList.head;
+    while (currentNode) {
+        if (buffer.indexOf(currentNode) !== -1) {
+            return currentNode;
+        } else {
+            currentNode = currentNode.next;
         }
-        return null;
-    },
+    }
+    return null;
+}
+
+module.exports = {
+    chapterTwoProblemEightBruteForceSolution: chapterTwoProblemEightBruteForceSolution,
 };

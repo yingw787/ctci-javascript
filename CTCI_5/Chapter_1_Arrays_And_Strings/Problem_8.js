@@ -3,6 +3,8 @@
 */
 'use strict';
 
+const assert = require('assert');
+
 function _setRowToZeroes(matrix, i) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = 0;
@@ -19,6 +21,8 @@ function _setColumnToZeroes(matrix, j) {
 // O(MN) space
 // REDO
 function chapterOneProblemEightBruteForceSolution(matrix) {
+    assert(typeof matrix === 'object');
+
     const n = matrix.length;
     const m = matrix[0].length;
 
