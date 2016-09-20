@@ -3,7 +3,7 @@
 */
 'use strict';
 
-function setMin(previousMin, stackData) {
+function _setMin(previousMin, stackData) {
     if (previousMin === null) {
         return stackData;
     }
@@ -13,9 +13,10 @@ function setMin(previousMin, stackData) {
 const StackNode = function(previousMin, stackData) {
     this.data = stackData;
     this.previous = null;
-    this.min = setMin(previousMin, stackData);
+    this.min = _setMin(previousMin, stackData);
 };
 
+// CORRECT NO REDO
 class stackWithMin {
     constructor() {
         this.top = null;

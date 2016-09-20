@@ -5,6 +5,7 @@
 
 const Stack = require('../Chapter_VII_Technical_Questions/Stack');
 
+// CORRECT NO REDO
 class QueueUsingStacks {
     constructor() {
         this.stackOne = new Stack();
@@ -13,26 +14,30 @@ class QueueUsingStacks {
     add(item) {
         this.stackOne.push(item);
     }
-    remove() {
+    _shiftStack(operation) {
+        let item;
         while (!this.stackOne.isEmpty()) {
             this.stackTwo.push(this.stackOne.pop());
         }
-        const item = this.stackTwo.pop();
+
+        if (operation === 'pop') {
+            item = this.stackTwo.pop();
+        } else if (operation === 'peek') {
+            item = this.stackTwo.peek().data;
+        }
+        else {
+            throw new Error('invalid operation.');
+        }
         while (!this.stackTwo.isEmpty()) {
             this.stackOne.push(this.stackTwo.pop());
         }
         return item;
     }
+    remove() {
+        return this._shiftStack('pop');
+    }
     peek() {
-        while (!this.stackOne.isEmpty()) {
-            this.stackTwo.push(this.stackOne.pop());
-        }
-
-        const item = this.stackTwo.peek();
-        while (!this.stackTwo.isEmpty()) {
-            this.stackOne.push(this.stackTwo.pop());
-        }
-        return item.data;
+        return this._shiftStack('peek');
     }
     isEmpty() {
         return this.stackOne.isEmpty();

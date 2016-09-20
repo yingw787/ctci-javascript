@@ -6,6 +6,9 @@
 // Looked at book and online for solutions, not brute force
 // TODO: Review book logic about threeStacksUsingArray
 
+const assert = require('assert');
+
+// CORRECT NO REDO
 class StackTracer {
     constructor() {
         this.stackOneBeginIndex = undefined;
@@ -16,6 +19,8 @@ class StackTracer {
         this.stackThreeEndIndex = undefined;
     }
     getStackBeginIndex(stackNumber) {
+        assert(typeof stackNumber === 'number');
+
         switch (stackNumber) {
             case 1:
                 return this.stackOneBeginIndex;
@@ -28,6 +33,8 @@ class StackTracer {
         }
     }
     getStackEndIndex(stackNumber) {
+        assert(typeof stackNumber === 'number');
+
         switch (stackNumber) {
             case 1:
                 return this.stackOneEndIndex;
@@ -40,6 +47,9 @@ class StackTracer {
         }
     }
     setStackBeginIndex(stackNumber, index) {
+        assert(typeof stackNumber === 'number');
+        assert(typeof index === 'number');
+
         switch (stackNumber) {
             case 1:
                 this.stackOneBeginIndex = index;
@@ -55,6 +65,9 @@ class StackTracer {
         }
     }
     setStackEndIndex(stackNumber, index) {
+        assert(typeof stackNumber === 'number');
+        assert(typeof index === 'number');
+
         switch (stackNumber) {
             case 1:
                 this.stackOneEndIndex = index;
@@ -77,6 +90,8 @@ class threeStacksUsingArray {
         this.stackTracer = new StackTracer();
     }
     pop(stackNumber) {
+        assert(typeof stackNumber === 'number');
+
         const endIndex = this.stackTracer.getStackEndIndex(stackNumber);
         const resultValue = this.stackArray[endIndex];
         this.stackArray.splice(endIndex, 1);
@@ -92,6 +107,8 @@ class threeStacksUsingArray {
         return resultValue;
     }
     push(stackNumber, item) {
+        assert(typeof stackNumber === 'number');
+
         if (this.stackTracer.getStackBeginIndex(stackNumber) === undefined) {
             this.stackArray.push(item);
             this.stackTracer.setStackBeginIndex(stackNumber, this.stackArray.length - 1);
@@ -103,10 +120,12 @@ class threeStacksUsingArray {
         }
     }
     peek(stackNumber) {
+        assert(typeof stackNumber === 'number');
+
         const endIndex = this.stackTracer.getStackEndIndex(stackNumber);
         return this.stackArray[endIndex];
     }
-    isEmpty(stackNumber) {
+    isEmpty() {
         return this.stackArray.length === 0;
     }
 }

@@ -10,6 +10,7 @@
 const Stack = require('../Chapter_VII_Technical_Questions/Stack');
 const MAX_SUBSTACK_CAPACITY = 3;
 
+// CORRECT NO REDO
 class SubStack {
     constructor() {
         this.Stack = new Stack();
@@ -28,7 +29,7 @@ class SubStack {
     }
 }
 
-class SetOfStacks {
+class setOfStacks {
     constructor() {
         this.arrayOfStacks = [];
     }
@@ -76,5 +77,5 @@ class SetOfStacks {
 }
 
 module.exports = {
-    chapterThreeProblemThreeBruteForceSolution: SetOfStacks,
+    chapterThreeProblemThreeBruteForceSolution: setOfStacks,
 };
