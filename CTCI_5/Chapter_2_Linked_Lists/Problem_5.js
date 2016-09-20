@@ -15,7 +15,7 @@
 
 const SinglyLinkedList = require('../Chapter_VII_Technical_Questions/SinglyLinkedList');
 
-const _reverse = singlyLinkedList => {
+function _reverse(singlyLinkedList) {
     const head = singlyLinkedList.head;
     if (!head || !head.next) { return; }
 
@@ -39,9 +39,9 @@ const _reverse = singlyLinkedList => {
     }
 
     singlyLinkedList.head = previousNode;
-};
+}
 
-const sumLists = (numberListOne, numberListTwo) => {
+function sumLists(numberListOne, numberListTwo) {
     const result = new SinglyLinkedList();
 
     let numberListOneCurrentNode = numberListOne.head;
@@ -78,7 +78,7 @@ const sumLists = (numberListOne, numberListTwo) => {
         }
     }
     return result;
-};
+}
 
 module.exports = {
     // O(N) time

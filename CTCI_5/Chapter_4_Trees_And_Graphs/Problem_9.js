@@ -3,9 +3,6 @@
 */
 'use strict';
 
-const SinglyLinkedList = require('../Chapter_VII_Technical_Questions/SinglyLinkedList');
-const Problem_2 = require('./Problem_2');
-
 // NOT MY OWN FUNCTION: FROM HERE: http://stackoverflow.com/questions/9960908/permutations-in-javascript/37580979#37580979
 function _permute(permutation) {
     let length = permutation.length,

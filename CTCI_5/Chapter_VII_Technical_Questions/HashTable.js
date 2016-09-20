@@ -2,7 +2,7 @@
 
 const SinglyLinkedList = require('./SinglyLinkedList');
 
-const generateHashCodeFromString = input => {
+function generateHashCodeFromString(input) {
     let hash = 0;
     let charCode;
 
@@ -15,7 +15,7 @@ const generateHashCodeFromString = input => {
 
     hash = Math.abs(hash);
     return hash;
-};
+}
 
 class HashTable {
     constructor(hashTableSize) {
