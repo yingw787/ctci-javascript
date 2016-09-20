@@ -5,7 +5,7 @@
 
 const assert = require('assert');
 
-const _checkCharactersAreTheSameExceptOneExtra = (inputOne, inputTwo) => {
+function _checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo) {
     assert(typeof inputOne === 'string');
     assert(typeof inputTwo === 'string');
 
@@ -37,9 +37,9 @@ const _checkCharactersAreTheSameExceptOneExtra = (inputOne, inputTwo) => {
         }
     }
     return true;
-};
+}
 
-const _checkStringsAreTheSameExceptOneDifferentCharacter = (inputOne, inputTwo) => {
+function _checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo) {
     assert(typeof inputOne === 'string');
     assert(typeof inputTwo === 'string');
 
@@ -56,7 +56,7 @@ const _checkStringsAreTheSameExceptOneDifferentCharacter = (inputOne, inputTwo) 
         }
     }
     return true;
-};
+}
 
 module.exports = {
     // O(N) time

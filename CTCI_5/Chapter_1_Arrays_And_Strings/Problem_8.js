@@ -3,17 +3,17 @@
 */
 'use strict';
 
-const _setRowToZeroes = (matrix, i) => {
+function _setRowToZeroes(matrix, i) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = 0;
     }
-};
+}
 
-const _setColumnToZeroes = (matrix, j) => {
+function _setColumnToZeroes(matrix, j) {
     for (let i = 0; i < matrix.length; i++) {
         matrix[i][j] = 0;
     }
-};
+}
 
 module.exports = {
     chapterOneProblemEightBruteForceSolution: matrix => {

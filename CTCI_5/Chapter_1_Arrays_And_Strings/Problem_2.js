@@ -3,7 +3,7 @@
 */
 'use strict';
 
-const _addStringToDictionary = (input, dictionary) => {
+function _addStringToDictionary(input, dictionary) {
     for (let i = 0; i < input.length; i++) {
         const char = input.charAt(i);
         if (char in dictionary) {
@@ -12,7 +12,7 @@ const _addStringToDictionary = (input, dictionary) => {
             dictionary[char] = 1;
         }
     }
-};
+}
 
 const assert = require('assert');
 
