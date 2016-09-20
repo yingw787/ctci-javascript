@@ -17,21 +17,26 @@ function _addStringToDictionary(input, dictionary) {
     }
 }
 
-module.exports = {
-    chapterOneProblemFourBruteForceSolution: input => {
-        assert(typeof input === 'string');
-        const dictionary = {};
-        let oneOdd = false;
-        _addStringToDictionary(input, dictionary);
-        for (const key in dictionary) {
-            if (dictionary[key] % 2 !== 0) {
-                if (oneOdd) {
-                    return false;
-                } else {
-                    oneOdd = true;
-                }
+// O(N) time, N being size of string
+// O(N) space, N being size of string
+// REDO, CORRECT SOLUTION O(N) time O(1) space
+function chapterOneProblemFourBruteForceSolution(input) {
+    assert(typeof input === 'string');
+    const dictionary = {};
+    let oneOdd = false;
+    _addStringToDictionary(input, dictionary);
+    for (const key in dictionary) {
+        if (dictionary[key] % 2 !== 0) {
+            if (oneOdd) {
+                return false;
+            } else {
+                oneOdd = true;
             }
         }
-        return true;
-    },
+    }
+    return true;
+}
+
+module.exports = {
+    chapterOneProblemFourBruteForceSolution: chapterOneProblemFourBruteForceSolution,
 };

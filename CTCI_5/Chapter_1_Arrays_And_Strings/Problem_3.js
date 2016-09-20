@@ -5,23 +5,26 @@
 
 const assert = require('assert');
 
-module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemThreeBruteForceSolution: input => {
-        assert(typeof input === 'string');
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemThreeBruteForceSolution(input) {
+    assert(typeof input === 'string');
 
-        let result = '';
+    let result = '';
 
-        for (let i = 0; i < input.length; i++) {
-            const currentCharacter = input.charAt(i);
-            if (JSON.stringify(currentCharacter) === JSON.stringify(' ')) {
-                result += '%20';
-            } else {
-                result += currentCharacter;
-            }
+    for (let i = 0; i < input.length; i++) {
+        const currentCharacter = input.charAt(i);
+        if (JSON.stringify(currentCharacter) === JSON.stringify(' ')) {
+            result += '%20';
+        } else {
+            result += currentCharacter;
         }
+    }
 
-        return result;
-    },
+    return result;
+}
+
+module.exports = {
+    chapterOneProblemThreeBruteForceSolution: chapterOneProblemThreeBruteForceSolution,
 };

@@ -7,12 +7,17 @@
 
 const assert = require('assert');
 
-module.exports = {
-    chapterOneProblemNineBruteForceSolution: (inputOne, inputTwo) => {
-        assert(typeof inputOne === 'string');
-        assert(typeof inputTwo === 'string');
+// O(M * N) time
+// O(M) space, M = inputOne
+// CORRECT NO REDO
+function chapterOneProblemNineBruteForceSolution(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
 
-        const doubleString = inputOne + inputOne;
-        return doubleString.indexOf(inputTwo) !== -1;
-    },
+    const doubleString = inputOne + inputOne;
+    return doubleString.indexOf(inputTwo) !== -1;
+}
+
+module.exports = {
+    chapterOneProblemNineBruteForceSolution: chapterOneProblemNineBruteForceSolution,
 };

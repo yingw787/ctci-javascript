@@ -58,25 +58,28 @@ function _checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo) 
     return true;
 }
 
-module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemFiveBruteForceSolution: (inputOne, inputTwo) => {
-        assert(typeof inputOne === 'string');
-        assert(typeof inputTwo === 'string');
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemFiveBruteForceSolution(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
 
-        if (inputOne.length !== inputTwo.length) {
-            if (Math.abs(inputOne.length - inputTwo.length) > 1) {
-                return false;
-            }
-            if (!_checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo)) {
-                return false;
-            }
-        } else {
-            if (!_checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo)) {
-                return false;
-            }
+    if (inputOne.length !== inputTwo.length) {
+        if (Math.abs(inputOne.length - inputTwo.length) > 1) {
+            return false;
         }
-        return true;
-    },
+        if (!_checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo)) {
+            return false;
+        }
+    } else {
+        if (!_checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+module.exports = {
+    chapterOneProblemFiveBruteForceSolution: chapterOneProblemFiveBruteForceSolution,
 };
