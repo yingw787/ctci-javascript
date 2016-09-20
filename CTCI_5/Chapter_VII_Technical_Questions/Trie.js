@@ -27,9 +27,9 @@ class Trie {
     constructor(node) {
         this.root = new TrieNode('');
     }
-    addWord(string) {
+    addWord(input) {
         let currentNode = this.root;
-        let toBeAddedString = string;
+        let toBeAddedString = input;
 
         while (toBeAddedString.length > 0) {
             const children = currentNode.children;
@@ -44,9 +44,9 @@ class Trie {
             toBeAddedString = toBeAddedString.slice(1, toBeAddedString.length);
         }
     }
-    removeWord(string) {
+    removeWord(input) {
         let trieNodeArray = [];
-        let toBeCheckedString = string;
+        let toBeCheckedString = input;
         let currentNode = this.root;
 
         trieNodeArray.push(currentNode);
@@ -69,9 +69,9 @@ class Trie {
 
         parentNode.children.splice(parentNode.children.indexOf(currentNode), 1);
     }
-    isMember(string) {
+    isMember(input) {
         let currentNode = this.root;
-        let toBeCheckedString = string;
+        let toBeCheckedString = input;
 
         while (toBeCheckedString.length > 0) {
             const children = currentNode.children;

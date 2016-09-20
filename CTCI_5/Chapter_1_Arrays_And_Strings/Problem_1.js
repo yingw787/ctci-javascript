@@ -3,20 +3,23 @@
 */
 'use strict';
 
-const includes = (array, value) => {
+function includes(array, value) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] === value) {
             return true;
         }
     }
     return false;
-};
+}
+
+const assert = require('assert');
 
 module.exports = {
-    chapterOneProblemOneBruteForceSolution: stringInput => {
+    chapterOneProblemOneBruteForceSolution: input => {
+        assert(typeof input === 'string');
         const appearedCharacters = [];
-        for (let i = 0; i < stringInput.length; i++) {
-            const currentCharacter = stringInput.indexOf(i);
+        for (let i = 0; i < input.length; i++) {
+            const currentCharacter = input.indexOf(i);
             if (includes(appearedCharacters, currentCharacter)) {
                 return false;
             }
@@ -26,10 +29,11 @@ module.exports = {
     },
     // Big O Run: O(N^2), assuming _.includes is an O(N) operation
     // Big O Space: O(N)
-    chapterOneProblemOneImprovedSolution: stringInput => {
+    chapterOneProblemOneImprovedSolution: input => {
+        assert(typeof input === 'string');
         const appearedCharacters = {};
-        for (let i = 0; i < stringInput.length; i++) {
-            const currentCharacter = stringInput.charAt(i);
+        for (let i = 0; i < input.length; i++) {
+            const currentCharacter = input.charAt(i);
             if (appearedCharacters[currentCharacter]) {
                 return false;
             }
@@ -41,10 +45,11 @@ module.exports = {
     // Big O Time: O(N)
     // Big O Space: O(1)
     // TODO: come back to this when I understand bit manipulation
-    chapterOneProblemOneBookSolution: stringInput => {
+    chapterOneProblemOneBookSolution: input => {
+        assert(typeof input === 'string');
         let checker = 0;
-        for (let i = 0; i < stringInput.length; i++) {
-            const val = stringInput.charAt(i) - 'a';
+        for (let i = 0; i < input.length; i++) {
+            const val = input.charAt(i) - 'a';
             if ((checker && (1 << val)) > 0) {
                 return false;
             }

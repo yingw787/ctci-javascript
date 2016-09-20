@@ -3,21 +3,25 @@
 */
 'use strict';
 
+const assert = require('assert');
+
 module.exports = {
     // O(N) time
     // O(N) space
-    chapterOneProblemThreeBruteForceSolution: string => {
-        let newString = '';
+    chapterOneProblemThreeBruteForceSolution: input => {
+        assert(typeof input === 'string');
 
-        for (let i = 0; i < string.length; i++) {
-            const currentCharacter = string.charAt(i);
+        let result = '';
+
+        for (let i = 0; i < input.length; i++) {
+            const currentCharacter = input.charAt(i);
             if (JSON.stringify(currentCharacter) === JSON.stringify(' ')) {
-                newString += '%20';
+                result += '%20';
             } else {
-                newString += currentCharacter;
+                result += currentCharacter;
             }
         }
 
-        return newString;
+        return result;
     },
 };

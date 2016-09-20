@@ -3,16 +3,20 @@
 */
 'use strict';
 
+const assert = require('assert');
+
 module.exports = {
     // O(N) time
     // O(N) space
-    chapterOneProblemSixBruteForceSolution: toBeCompressedString => {
-        let compressedString = '';
-        for (let i = 0; i < toBeCompressedString.length; i++) {
-            const currentCharacter = toBeCompressedString.charAt(i);
+    chapterOneProblemSixBruteForceSolution: toBeCompressedInput => {
+        assert(typeof toBeCompressedInput === 'string');
+
+        let compressedInput = '';
+        for (let i = 0; i < toBeCompressedInput.length; i++) {
+            const currentCharacter = toBeCompressedInput.charAt(i);
             let count = 1;
-            while (i < toBeCompressedString.length) {
-                const nextCharacter = toBeCompressedString.charAt(i + 1);
+            while (i < toBeCompressedInput.length) {
+                const nextCharacter = toBeCompressedInput.charAt(i + 1);
                 if (JSON.stringify(nextCharacter) !== JSON.stringify(currentCharacter)) {
                     break;
                 } else {
@@ -20,11 +24,11 @@ module.exports = {
                     i++;
                 }
             }
-            compressedString += currentCharacter + count;
+            compressedInput += currentCharacter + count;
         }
-        if (compressedString.length > toBeCompressedString.length) {
-            return toBeCompressedString;
+        if (compressedInput.length > toBeCompressedInput.length) {
+            return toBeCompressedInput;
         }
-        return compressedString;
+        return compressedInput;
     },
 };

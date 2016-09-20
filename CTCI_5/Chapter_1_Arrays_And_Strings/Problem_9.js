@@ -5,9 +5,14 @@
 
 // assume indexOf is isSubstring method.
 
+const assert = require('assert');
+
 module.exports = {
-    chapterOneProblemNineBruteForceSolution: (stringOne, stringTwo) => {
-        const doubleString = stringOne + stringOne;
-        return doubleString.indexOf(stringTwo) !== -1;
+    chapterOneProblemNineBruteForceSolution: (inputOne, inputTwo) => {
+        assert(typeof inputOne === 'string');
+        assert(typeof inputTwo === 'string');
+
+        const doubleString = inputOne + inputOne;
+        return doubleString.indexOf(inputTwo) !== -1;
     },
 };

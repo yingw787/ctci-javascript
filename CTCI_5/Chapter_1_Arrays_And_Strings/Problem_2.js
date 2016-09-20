@@ -3,9 +3,9 @@
 */
 'use strict';
 
-const _addStringToDictionary = (string, dictionary) => {
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charAt(i);
+const _addStringToDictionary = (input, dictionary) => {
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charAt(i);
         if (char in dictionary) {
             dictionary[char]++;
         } else {
@@ -14,15 +14,20 @@ const _addStringToDictionary = (string, dictionary) => {
     }
 };
 
+const assert = require('assert');
+
 module.exports = {
     // O(N) time
     // O(N) space
-    chapterOneProblemTwoBruteForceSolution: (stringOne, stringTwo) => {
+    chapterOneProblemTwoBruteForceSolution: (inputOne, inputTwo) => {
+        assert(typeof inputOne === 'string');
+        assert(typeof inputTwo === 'string');
+
         const dictionaryOne = {};
         const dictionaryTwo = {};
 
-        _addStringToDictionary(stringOne, dictionaryOne);
-        _addStringToDictionary(stringTwo, dictionaryTwo);
+        _addStringToDictionary(inputOne, dictionaryOne);
+        _addStringToDictionary(inputTwo, dictionaryTwo);
 
         return JSON.stringify(dictionaryOne) === JSON.stringify(dictionaryTwo);
     },

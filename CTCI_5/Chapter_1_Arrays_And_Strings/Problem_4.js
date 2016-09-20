@@ -3,9 +3,11 @@
 */
 'use strict';
 
-const _addStringToDictionary = (string, dictionary) => {
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charAt(i);
+const assert = require('assert');
+
+function _addStringToDictionary(input, dictionary) {
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charAt(i);
         if (JSON.stringify(char) === JSON.stringify(' ')) { continue; }
         if (char in dictionary) {
             dictionary[char]++;
@@ -13,13 +15,14 @@ const _addStringToDictionary = (string, dictionary) => {
             dictionary[char] = 1;
         }
     }
-};
+}
 
 module.exports = {
-    chapterOneProblemFourBruteForceSolution: string => {
+    chapterOneProblemFourBruteForceSolution: input => {
+        assert(typeof input === 'string');
         const dictionary = {};
         let oneOdd = false;
-        _addStringToDictionary(string, dictionary);
+        _addStringToDictionary(input, dictionary);
         for (const key in dictionary) {
             if (dictionary[key] % 2 !== 0) {
                 if (oneOdd) {

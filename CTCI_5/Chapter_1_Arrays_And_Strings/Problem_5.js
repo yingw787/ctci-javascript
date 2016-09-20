@@ -3,11 +3,16 @@
 */
 'use strict';
 
-const _checkCharactersAreTheSameExceptOneExtra = (stringOne, stringTwo) => {
+const assert = require('assert');
+
+const _checkCharactersAreTheSameExceptOneExtra = (inputOne, inputTwo) => {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
     let shorterString, longerString;
-    if (stringOne.length > stringTwo.length) {
-        longerString = stringOne;
-        shorterString = stringTwo;
+    if (inputOne.length > inputTwo.length) {
+        longerString = inputOne;
+        shorterString = inputTwo;
     }
     let j = 0;
     let i = 0;
@@ -34,12 +39,15 @@ const _checkCharactersAreTheSameExceptOneExtra = (stringOne, stringTwo) => {
     return true;
 };
 
-const _checkStringsAreTheSameExceptOneDifferentCharacter = (stringOne, stringTwo) => {
+const _checkStringsAreTheSameExceptOneDifferentCharacter = (inputOne, inputTwo) => {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
     let oneDifferent = false;
-    for (let i = 0; i < stringOne.length; i++) {
-        const stringOneCurrentCharacter = stringOne.charAt(i);
-        const stringTwoCurrentCharacter = stringTwo.charAt(i);
-        if (JSON.stringify(stringOneCurrentCharacter) !== JSON.stringify(stringTwoCurrentCharacter)) {
+    for (let i = 0; i < inputOne.length; i++) {
+        const inputOneCurrentCharacter = inputOne.charAt(i);
+        const inputTwoCurrentCharacter = inputTwo.charAt(i);
+        if (JSON.stringify(inputOneCurrentCharacter) !== JSON.stringify(inputTwoCurrentCharacter)) {
             if (oneDifferent) {
                 return false;
             } else {
@@ -53,16 +61,19 @@ const _checkStringsAreTheSameExceptOneDifferentCharacter = (stringOne, stringTwo
 module.exports = {
     // O(N) time
     // O(N) space
-    chapterOneProblemFiveBruteForceSolution: (stringOne, stringTwo) => {
-        if (stringOne.length !== stringTwo.length) {
-            if (Math.abs(stringOne.length - stringTwo.length) > 1) {
+    chapterOneProblemFiveBruteForceSolution: (inputOne, inputTwo) => {
+        assert(typeof inputOne === 'string');
+        assert(typeof inputTwo === 'string');
+
+        if (inputOne.length !== inputTwo.length) {
+            if (Math.abs(inputOne.length - inputTwo.length) > 1) {
                 return false;
             }
-            if (!_checkCharactersAreTheSameExceptOneExtra(stringOne, stringTwo)) {
+            if (!_checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo)) {
                 return false;
             }
         } else {
-            if (!_checkStringsAreTheSameExceptOneDifferentCharacter(stringOne, stringTwo)) {
+            if (!_checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo)) {
                 return false;
             }
         }
