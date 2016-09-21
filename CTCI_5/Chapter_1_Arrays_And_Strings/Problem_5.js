@@ -22,7 +22,7 @@ function _areInputsTheSameExceptForAnExtraCharacter(inputOne, inputTwo) {
     for (shorterStringIndex = 0; shorterStringIndex < shorterString.length; shorterStringIndex++) {
         const shorterStringCurrentCharacter = shorterString.charAt[shorterStringIndex];
         const longerStringCurrentCharacter = longerString.charAt[longerStringIndex];
-        if (JSON.stringify(shorterStringCurrentCharacter) !== JSON.stringify(longerStringCurrentCharacter)) {
+        if (shorterStringCurrentCharacter !== longerStringCurrentCharacter) {
             if (oneCharacterDifferent) {
                 return false;
             } else {
@@ -47,7 +47,7 @@ function _checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo) 
     for (let i = 0; i < inputOne.length; i++) {
         const inputOneCurrentCharacter = inputOne.charAt(i);
         const inputTwoCurrentCharacter = inputTwo.charAt(i);
-        if (JSON.stringify(inputOneCurrentCharacter) !== JSON.stringify(inputTwoCurrentCharacter)) {
+        if (inputOneCurrentCharacter !== inputTwoCurrentCharacter) {
             if (oneDifferent) {
                 return false;
             } else {
