@@ -13,9 +13,8 @@ function chapterOneProblemThreeBruteForceSolution(input) {
 
     let result = '';
 
-    for (let i = 0; i < input.length; i++) {
-        const currentCharacter = input.charAt(i);
-        if (JSON.stringify(currentCharacter) === JSON.stringify(' ')) {
+    for (let currentCharacter of input) {
+        if (currentCharacter === ' ') {
             result += '%20';
         } else {
             result += currentCharacter;

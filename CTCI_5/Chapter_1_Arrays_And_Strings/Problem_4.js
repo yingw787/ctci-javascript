@@ -5,7 +5,7 @@
 
 const assert = require('assert');
 
-function _addStringToDictionary(input, dictionary) {
+function _decomposeInputIntoLetterToFrequencyMapping(input, dictionary) {
     for (let i = 0; i < input.length; i++) {
         const char = input.charAt(i);
         if (JSON.stringify(char) === JSON.stringify(' ')) { continue; }
@@ -22,11 +22,12 @@ function _addStringToDictionary(input, dictionary) {
 // REDO, CORRECT SOLUTION O(N) time O(1) space
 function chapterOneProblemFourBruteForceSolution(input) {
     assert(typeof input === 'string');
-    const dictionary = {};
+    const letterToFrequency = {};
     let oneOdd = false;
-    _addStringToDictionary(input, dictionary);
-    for (const key in dictionary) {
-        if (dictionary[key] % 2 !== 0) {
+    _decomposeInputIntoLetterToFrequencyMapping(input, letterToFrequency);
+    for (let letter of Object.keys(letterToFrequency)) {
+        const isLetterFrequencyEven = letterToFrequency[letter] % 2;
+        if (isLetterFrequencyEven) {
             if (oneOdd) {
                 return false;
             } else {
