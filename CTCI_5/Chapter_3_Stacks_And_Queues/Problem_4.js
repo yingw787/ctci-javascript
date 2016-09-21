@@ -4,6 +4,7 @@
 'use strict';
 
 const Stack = require('../Chapter_VII_Technical_Questions/Stack');
+const assert = require('assert');
 
 // CORRECT NO REDO
 class QueueUsingStacks {
@@ -15,6 +16,8 @@ class QueueUsingStacks {
         this.stackOne.push(item);
     }
     _shiftStack(operation) {
+        assert(typeof operation === 'string');
+
         let item;
         while (!this.stackOne.isEmpty()) {
             this.stackTwo.push(this.stackOne.pop());

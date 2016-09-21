@@ -32,27 +32,31 @@ function _calculateSmallerValue(positiveInteger, subtractor, desiredNumberOfOnes
     return _calculateSmallerValue(positiveInteger - subtractor, subtractor, desiredNumberOfOnes);
 }
 
+// O(?) time REVIEW O(N) FOR BIT MANIPULATION ALGORITHMS
+// O(?) space
+// REDO
+function chapterFiveProblemFourBruteForceSolution(positiveInteger) {
+    assert(typeof positiveInteger === 'number');
+
+    if (positiveInteger <= 0) {
+        throw new Error('positiveInteger not positive');
+    }
+
+    if (positiveInteger % 1 !== 0) {
+        throw new Error('positiveInteger not an integer');
+    }
+
+    const positiveIntegerAsBinaryString = positiveInteger.toString(2);
+    const positiveIntegerAsBinaryStringNumberOfOnes = _countNumberOfOnes(positiveIntegerAsBinaryString);
+
+    let largerValueSameNumberOfOnes, smallerValueSameNumberOfOnes;
+
+    largerValueSameNumberOfOnes = _calculateLargerValue(positiveInteger + 1, positiveIntegerAsBinaryStringNumberOfOnes);
+    smallerValueSameNumberOfOnes = _calculateSmallerValue(positiveInteger - 1, 1, positiveIntegerAsBinaryStringNumberOfOnes);
+
+    return [largerValueSameNumberOfOnes, smallerValueSameNumberOfOnes];
+}
+
 module.exports = {
-    chapterFiveProblemFourBruteForceSolution: positiveInteger => {
-        assert(typeof positiveInteger === 'number');
-
-        if (positiveInteger <= 0) {
-            throw new Error('positiveInteger not positive');
-        }
-
-        if (positiveInteger % 1 !== 0) {
-            throw new Error('positiveInteger not an integer');
-        }
-
-        const positiveIntegerAsBinaryString = positiveInteger.toString(2);
-        const positiveIntegerAsBinaryStringNumberOfOnes = _countNumberOfOnes(positiveIntegerAsBinaryString);
-
-        let largerValueSameNumberOfOnes, smallerValueSameNumberOfOnes;
-
-        largerValueSameNumberOfOnes = _calculateLargerValue(positiveInteger + 1, positiveIntegerAsBinaryStringNumberOfOnes);
-        smallerValueSameNumberOfOnes = _calculateSmallerValue(positiveInteger - 1, 1, positiveIntegerAsBinaryStringNumberOfOnes);
-
-        return [largerValueSameNumberOfOnes, smallerValueSameNumberOfOnes];
-    },
-    // REDO THIS IS BRUTE FORCE IMPLEMENTATION
+    chapterFiveProblemFourBruteForceSolution: chapterFiveProblemFourBruteForceSolution,
 };

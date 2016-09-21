@@ -26,25 +26,30 @@ function _clearBits(toBeClearedNumber, i, j) {
     return number.toString(2);
 }
 
-module.exports = {
-    chapterFiveProblemOneBruteForceSolution: (N, M, i, j) => {
-        assert(typeof N === 'string');
-        assert(typeof M === 'string');
-        assert(typeof i === 'number');
-        assert(typeof j === 'number');
+// O(N) time, N = length of N
+// O(N) space
+// REDO (USE MASKS)
+function chapterFiveProblemOneBruteForceSolution(N, M, i, j) {
+    assert(typeof N === 'string');
+    assert(typeof M === 'string');
+    assert(typeof i === 'number');
+    assert(typeof j === 'number');
 
-        _checkStringForInvalidInput(N);
-        _checkStringForInvalidInput(M);
+    _checkStringForInvalidInput(N);
+    _checkStringForInvalidInput(M);
 
-        let parsedN = _clearBits(N, i, j);
-        let result = (parseInt(parsedN, 2) | (parseInt(M, 2) << i)).toString(2);
+    let parsedN = _clearBits(N, i, j);
+    let result = (parseInt(parsedN, 2) | (parseInt(M, 2) << i)).toString(2);
 
-        if (result.length < N.length) {
-            const difference = N.length - result.length;
-            for (let count = 0; count < difference; count++) {
-                result = '0' + result;
-            }
+    if (result.length < N.length) {
+        const difference = N.length - result.length;
+        for (let count = 0; count < difference; count++) {
+            result = '0' + result;
         }
-        return result;
-    },
+    }
+    return result;
+}
+
+module.exports = {
+    chapterFiveProblemOneBruteForceSolution: chapterFiveProblemOneBruteForceSolution,
 };
