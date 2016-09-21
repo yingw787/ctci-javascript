@@ -23,16 +23,16 @@ function _decomposeInputIntoLetterToFrequencyMapping(input, dictionary) {
 function chapterOneProblemFourBruteForceSolution(input) {
     assert(typeof input === 'string');
     const letterToFrequency = {};
-    let oneOdd = false;
+    let hasAlreadySeenLetterWithOddFrequency = false;
     _decomposeInputIntoLetterToFrequencyMapping(input, letterToFrequency);
     for (let letter of Object.keys(letterToFrequency)) {
         const isLetterFrequencyEven = letterToFrequency[letter] % 2;
         if (isLetterFrequencyEven) {
-            if (oneOdd) {
+            if (hasAlreadySeenLetterWithOddFrequency) {
                 return false;
-            } else {
-                oneOdd = true;
             }
+
+            hasAlreadySeenLetterWithOddFrequency = true;
         }
     }
     return true;

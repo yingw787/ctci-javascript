@@ -3,12 +3,14 @@
 
 'use strict';
 
-const BinarySearchTreeNode = function(key, nodeData) {
-    this.data = nodeData;
-    this.key = key;
-    this.leftChild = null;
-    this.rightChild = null;
-};
+class BinarySearchTreeNode {
+    constructor(key, nodeData) {
+        this.data = nodeData;
+        this.key = key;
+        this.leftChild = null;
+        this.rightChild = null;
+    }
+}
 
 class BinarySearchTree {
     constructor() {

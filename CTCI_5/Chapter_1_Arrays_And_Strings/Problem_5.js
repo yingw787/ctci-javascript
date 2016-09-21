@@ -5,7 +5,7 @@
 
 const assert = require('assert');
 
-function _checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo) {
+function _areInputsTheSameExceptForAnExtraCharacter(inputOne, inputTwo) {
     assert(typeof inputOne === 'string');
     assert(typeof inputTwo === 'string');
 
@@ -13,28 +13,28 @@ function _checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo) {
     if (inputOne.length > inputTwo.length) {
         longerString = inputOne;
         shorterString = inputTwo;
+    } else {
+        longerString = inputTwo;
+        shorterString = inputOne;
     }
-    let j = 0;
-    let i = 0;
+    let {longerStringIndex, shorterStringIndex} = 0;
     let oneCharacterDifferent = false;
-    for (i = 0; i < shorterString.length; i++) {
-        const shorterStringCurrentCharacter = shorterString.charAt[i];
-        const longerStringCurrentCharacter = longerString.charAt[j];
+    for (shorterStringIndex = 0; shorterStringIndex < shorterString.length; shorterStringIndex++) {
+        const shorterStringCurrentCharacter = shorterString.charAt[shorterStringIndex];
+        const longerStringCurrentCharacter = longerString.charAt[longerStringIndex];
         if (JSON.stringify(shorterStringCurrentCharacter) !== JSON.stringify(longerStringCurrentCharacter)) {
             if (oneCharacterDifferent) {
                 return false;
             } else {
-                j += 2;
+                longerStringIndex += 2;
                 oneCharacterDifferent = true;
             }
         } else {
-            j++;
+            longerStringIndex++;
         }
     }
-    if (i === j) {
-        if (oneCharacterDifferent) {
-            return false;
-        }
+    if (shorterStringIndex === longerStringIndex && oneCharacterDifferent) {
+        return false;
     }
     return true;
 }
@@ -69,7 +69,7 @@ function chapterOneProblemFiveBruteForceSolution(inputOne, inputTwo) {
         if (Math.abs(inputOne.length - inputTwo.length) > 1) {
             return false;
         }
-        if (!_checkCharactersAreTheSameExceptOneExtra(inputOne, inputTwo)) {
+        if (!_areInputsTheSameExceptForAnExtraCharacter(inputOne, inputTwo)) {
             return false;
         }
     } else {
