@@ -3,8 +3,7 @@
 */
 'use strict';
 
-const SinglyLinkedList = require('../Chapter_VII_Technical_Questions/SinglyLinkedList');
-const Problem_2 = require('./Problem_2');
+const assert = require('assert');
 
 // NOT MY OWN FUNCTION: FROM HERE: http://stackoverflow.com/questions/9960908/permutations-in-javascript/37580979#37580979
 function _permute(permutation) {
@@ -59,42 +58,51 @@ function _inOrderTraversalOfNodes(binarySearchTreeRootNode) {
     return values;
 }
 
+// O(N) time, N = number of nodes in binarySearchTree
+// O(N!) space (REVIEW NOT SURE IF I GOT THIS RIGHT)
+// REDO (RETURN ACTUAL PERMUTATIONS, NOT JUST NUMBER OF PERMUTATIONS)
+function chapterFourProblemNineBruteForceSolution(binarySearchTree) {
+    // Note that adding nodes from each level doesn't matter.
+    // Find all permutations of nodes at each level, append permutations to the level above.
+    // e.g. [50], [4, 87], [2, 7, 55, 90] is permutationsOfArray([50]).append(permutationsOfArray([4, 87])).append(permutationsOfArray([2, 7, 55, 90])).
+
+    assert(typeof binarySearchTree === 'object');
+    assert(typeof binarySearchTree.root === 'object');
+
+    _recursivelyMarkDepths(binarySearchTree.root, 0);
+    const arrayOfBinaryTreeNodes = _inOrderTraversalOfNodes(binarySearchTree.root);
+
+    const depthArrayObject = {};
+    for (let i = 0; i < arrayOfBinaryTreeNodes.length; i++) {
+        const currentBinaryTreeNode = arrayOfBinaryTreeNodes[i];
+        const depth = currentBinaryTreeNode.depth;
+        if (depthArrayObject[depth]) {
+            const singlyLinkedList = depthArrayObject[depth];
+            singlyLinkedList.push(currentBinaryTreeNode.key);
+            depthArrayObject[depth] = singlyLinkedList;
+        } else {
+            const singlyLinkedList = [];
+            singlyLinkedList.push(currentBinaryTreeNode.key);
+            depthArrayObject[depth] = singlyLinkedList;
+        }
+    }
+
+    const depths = Object.keys(depthArrayObject);
+    const arrayOfPermutations = [];
+
+    for (let i = 0; i < depths.length; i++) {
+        arrayOfPermutations.push(_permute(depthArrayObject[i]));
+    }
+
+    let numberOfPermutations = 0;
+    for (let i = 0; i < arrayOfPermutations.length; i++) {
+        numberOfPermutations += arrayOfPermutations[i].length;
+    }
+
+    // TODO: concatenate them together and return the array of arrays.
+    return numberOfPermutations;
+}
+
 module.exports = {
-    chapterFourProblemNineBruteForceSolution: binarySearchTree => {
-        // Note that adding nodes from each level doesn't matter.
-        // Find all permutations of nodes at each level, append permutations to the level above.
-        // e.g. [50], [4, 87], [2, 7, 55, 90] is permutationsOfArray([50]).append(permutationsOfArray([4, 87])).append(permutationsOfArray([2, 7, 55, 90])).
-        _recursivelyMarkDepths(binarySearchTree.root, 0);
-        const arrayOfBinaryTreeNodes = _inOrderTraversalOfNodes(binarySearchTree.root);
-
-        const depthArrayObject = {};
-        for (let i = 0; i < arrayOfBinaryTreeNodes.length; i++) {
-            const currentBinaryTreeNode = arrayOfBinaryTreeNodes[i];
-            const depth = currentBinaryTreeNode.depth;
-            if (depthArrayObject[depth]) {
-                const singlyLinkedList = depthArrayObject[depth];
-                singlyLinkedList.push(currentBinaryTreeNode.key);
-                depthArrayObject[depth] = singlyLinkedList;
-            } else {
-                const singlyLinkedList = [];
-                singlyLinkedList.push(currentBinaryTreeNode.key);
-                depthArrayObject[depth] = singlyLinkedList;
-            }
-        }
-
-        const depths = Object.keys(depthArrayObject);
-        const arrayOfPermutations = [];
-
-        for (let i = 0; i < depths.length; i++) {
-            arrayOfPermutations.push(_permute(depthArrayObject[i]));
-        }
-
-        let numberOfPermutations = 0;
-        for (let i = 0; i < arrayOfPermutations.length; i++) {
-            numberOfPermutations += arrayOfPermutations[i].length;
-        }
-
-        // TODO: concatenate them together and return the array of arrays.
-        return numberOfPermutations;
-    },
+    chapterFourProblemNineBruteForceSolution: chapterFourProblemNineBruteForceSolution,
 };

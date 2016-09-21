@@ -9,7 +9,9 @@
 
 const Stack = require('../Chapter_VII_Technical_Questions/Stack');
 const MAX_SUBSTACK_CAPACITY = 3;
+const assert = require('assert');
 
+// CORRECT NO REDO
 class SubStack {
     constructor() {
         this.Stack = new Stack();
@@ -28,7 +30,7 @@ class SubStack {
     }
 }
 
-class SetOfStacks {
+class setOfStacks {
     constructor() {
         this.arrayOfStacks = [];
     }
@@ -57,6 +59,8 @@ class SetOfStacks {
         }
     }
     popAt(index) {
+        assert(typeof index === 'number');
+
         const item = this.arrayOfStacks[index].pop();
         if (this.arrayOfStacks[index].numberOfElements === 0) {
             this.arrayOfStacks.splice(index, 1);
@@ -76,5 +80,5 @@ class SetOfStacks {
 }
 
 module.exports = {
-    chapterThreeProblemThreeBruteForceSolution: SetOfStacks,
+    chapterThreeProblemThreeBruteForceSolution: setOfStacks,
 };

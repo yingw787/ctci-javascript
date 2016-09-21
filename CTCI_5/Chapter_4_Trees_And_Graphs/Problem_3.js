@@ -5,8 +5,12 @@
 
 const SinglyLinkedList = require('../Chapter_VII_Technical_Questions/SinglyLinkedList');
 const Problem_2 = require('./Problem_2');
+const assert = require('assert');
 
 function _recursivelyMarkDepths(binaryTreeNode, depth) {
+    assert(typeof binaryTreeNode === 'object');
+    assert(typeof depth === 'number');
+
     if (!binaryTreeNode) { return; }
     binaryTreeNode.depth = depth;
     _recursivelyMarkDepths(binaryTreeNode.leftChild, depth + 1);
@@ -14,6 +18,8 @@ function _recursivelyMarkDepths(binaryTreeNode, depth) {
 }
 
 function _inOrderTraversalOfNodes(binaryTreeRootNode) {
+    assert(typeof binaryTreeRootNode === 'object');
+
     const values = [];
 
     function recursiveInOrderTraversal(node) {
@@ -32,29 +38,36 @@ function _inOrderTraversalOfNodes(binaryTreeRootNode) {
     return values;
 }
 
-module.exports = {
-    chapterFourProblemThreeBruteForceSolution: arrayOfNumericValues => {
-        arrayOfNumericValues.sort(function(a, b) {
-            return a - b;
-        });
-        const binaryTree = Problem_2.chapterFourProblemTwoBruteForceSolution(arrayOfNumericValues);
-        _recursivelyMarkDepths(binaryTree.root, 0);
-        const arrayOfBinaryTreeNodes = _inOrderTraversalOfNodes(binaryTree.root);
+// O(N * N) time, N = number of nodes
+// O(N) space
+// REDO
+function chapterFourProblemThreeBruteForceSolution(arrayOfNumericValues) {
+    assert(typeof arrayOfNumericValues === 'object');
 
-        const depthLinkedListObject = {};
-        for (let i = 0; i < arrayOfBinaryTreeNodes.length; i++) {
-            const currentBinaryTreeNode = arrayOfBinaryTreeNodes[i];
-            const depth = currentBinaryTreeNode.depth;
-            if (depthLinkedListObject[depth]) {
-                const singlyLinkedList = depthLinkedListObject[depth];
-                singlyLinkedList.append(currentBinaryTreeNode.key);
-                depthLinkedListObject[depth] = singlyLinkedList;
-            } else {
-                const singlyLinkedList = new SinglyLinkedList();
-                singlyLinkedList.append(currentBinaryTreeNode.key);
-                depthLinkedListObject[depth] = singlyLinkedList;
-            }
+    arrayOfNumericValues.sort(function(a, b) {
+        return a - b;
+    });
+    const binaryTree = Problem_2.chapterFourProblemTwoBruteForceSolution(arrayOfNumericValues);
+    _recursivelyMarkDepths(binaryTree.root, 0);
+    const arrayOfBinaryTreeNodes = _inOrderTraversalOfNodes(binaryTree.root);
+
+    const depthLinkedListObject = {};
+    for (let i = 0; i < arrayOfBinaryTreeNodes.length; i++) {
+        const currentBinaryTreeNode = arrayOfBinaryTreeNodes[i];
+        const depth = currentBinaryTreeNode.depth;
+        if (depthLinkedListObject[depth]) {
+            const singlyLinkedList = depthLinkedListObject[depth];
+            singlyLinkedList.append(currentBinaryTreeNode.key);
+            depthLinkedListObject[depth] = singlyLinkedList;
+        } else {
+            const singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.append(currentBinaryTreeNode.key);
+            depthLinkedListObject[depth] = singlyLinkedList;
         }
-        return depthLinkedListObject;
-    },
+    }
+    return depthLinkedListObject;
+}
+
+module.exports = {
+    chapterFourProblemThreeBruteForceSolution: chapterFourProblemThreeBruteForceSolution,
 };

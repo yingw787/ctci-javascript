@@ -3,13 +3,22 @@
 */
 'use strict';
 
-module.exports = {
-    chapterTwoProblemThreeBruteForceSolution: singlyLinkedListNode => {
-        while (singlyLinkedListNode.next.next) {
-            singlyLinkedListNode.data = singlyLinkedListNode.next.data;
-            singlyLinkedListNode = singlyLinkedListNode.next;
-        }
+const assert = require('assert');
+
+// O(N) time, N = number of remaining elements
+// O(1) space
+// CORRECT NO REDO
+function chapterTwoProblemThreeBruteForceSolution(singlyLinkedListNode) {
+    assert(typeof singlyLinkedListNode === 'object');
+
+    while (singlyLinkedListNode.next.next) {
         singlyLinkedListNode.data = singlyLinkedListNode.next.data;
-        singlyLinkedListNode.next = null;
-    },
+        singlyLinkedListNode = singlyLinkedListNode.next;
+    }
+    singlyLinkedListNode.data = singlyLinkedListNode.next.data;
+    singlyLinkedListNode.next = null;
+}
+
+module.exports = {
+    chapterTwoProblemThreeBruteForceSolution: chapterTwoProblemThreeBruteForceSolution,
 };

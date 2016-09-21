@@ -3,43 +3,51 @@
 */
 'use strict';
 
-const _checkCharactersAreTheSameExceptOneExtra = (stringOne, stringTwo) => {
+const assert = require('assert');
+
+function _areInputsTheSameExceptForAnExtraCharacter(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
     let shorterString, longerString;
-    if (stringOne.length > stringTwo.length) {
-        longerString = stringOne;
-        shorterString = stringTwo;
+    if (inputOne.length > inputTwo.length) {
+        longerString = inputOne;
+        shorterString = inputTwo;
+    } else {
+        longerString = inputTwo;
+        shorterString = inputOne;
     }
-    let j = 0;
-    let i = 0;
+    let {longerStringIndex, shorterStringIndex} = 0;
     let oneCharacterDifferent = false;
-    for (i = 0; i < shorterString.length; i++) {
-        const shorterStringCurrentCharacter = shorterString.charAt[i];
-        const longerStringCurrentCharacter = longerString.charAt[j];
-        if (JSON.stringify(shorterStringCurrentCharacter) !== JSON.stringify(longerStringCurrentCharacter)) {
+    for (shorterStringIndex = 0; shorterStringIndex < shorterString.length; shorterStringIndex++) {
+        const shorterStringCurrentCharacter = shorterString.charAt[shorterStringIndex];
+        const longerStringCurrentCharacter = longerString.charAt[longerStringIndex];
+        if (shorterStringCurrentCharacter !== longerStringCurrentCharacter) {
             if (oneCharacterDifferent) {
                 return false;
             } else {
-                j += 2;
+                longerStringIndex += 2;
                 oneCharacterDifferent = true;
             }
         } else {
-            j++;
+            longerStringIndex++;
         }
     }
-    if (i === j) {
-        if (oneCharacterDifferent) {
-            return false;
-        }
+    if (shorterStringIndex === longerStringIndex && oneCharacterDifferent) {
+        return false;
     }
     return true;
-};
+}
 
-const _checkStringsAreTheSameExceptOneDifferentCharacter = (stringOne, stringTwo) => {
+function _checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
     let oneDifferent = false;
-    for (let i = 0; i < stringOne.length; i++) {
-        const stringOneCurrentCharacter = stringOne.charAt(i);
-        const stringTwoCurrentCharacter = stringTwo.charAt(i);
-        if (JSON.stringify(stringOneCurrentCharacter) !== JSON.stringify(stringTwoCurrentCharacter)) {
+    for (let i = 0; i < inputOne.length; i++) {
+        const inputOneCurrentCharacter = inputOne.charAt(i);
+        const inputTwoCurrentCharacter = inputTwo.charAt(i);
+        if (inputOneCurrentCharacter !== inputTwoCurrentCharacter) {
             if (oneDifferent) {
                 return false;
             } else {
@@ -48,24 +56,30 @@ const _checkStringsAreTheSameExceptOneDifferentCharacter = (stringOne, stringTwo
         }
     }
     return true;
-};
+}
+
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemFiveBruteForceSolution(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
+    if (inputOne.length !== inputTwo.length) {
+        if (Math.abs(inputOne.length - inputTwo.length) > 1) {
+            return false;
+        }
+        if (!_areInputsTheSameExceptForAnExtraCharacter(inputOne, inputTwo)) {
+            return false;
+        }
+    } else {
+        if (!_checkStringsAreTheSameExceptOneDifferentCharacter(inputOne, inputTwo)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemFiveBruteForceSolution: (stringOne, stringTwo) => {
-        if (stringOne.length !== stringTwo.length) {
-            if (Math.abs(stringOne.length - stringTwo.length) > 1) {
-                return false;
-            }
-            if (!_checkCharactersAreTheSameExceptOneExtra(stringOne, stringTwo)) {
-                return false;
-            }
-        } else {
-            if (!_checkStringsAreTheSameExceptOneDifferentCharacter(stringOne, stringTwo)) {
-                return false;
-            }
-        }
-        return true;
-    },
+    chapterOneProblemFiveBruteForceSolution: chapterOneProblemFiveBruteForceSolution,
 };

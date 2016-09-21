@@ -3,21 +3,27 @@
 */
 'use strict';
 
-module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemThreeBruteForceSolution: string => {
-        let newString = '';
+const assert = require('assert');
 
-        for (let i = 0; i < string.length; i++) {
-            const currentCharacter = string.charAt(i);
-            if (JSON.stringify(currentCharacter) === JSON.stringify(' ')) {
-                newString += '%20';
-            } else {
-                newString += currentCharacter;
-            }
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemThreeBruteForceSolution(input) {
+    assert(typeof input === 'string');
+
+    let result = '';
+
+    for (let currentCharacter of input) {
+        if (currentCharacter === ' ') {
+            result += '%20';
+        } else {
+            result += currentCharacter;
         }
+    }
 
-        return newString;
-    },
+    return result;
+}
+
+module.exports = {
+    chapterOneProblemThreeBruteForceSolution: chapterOneProblemThreeBruteForceSolution,
 };

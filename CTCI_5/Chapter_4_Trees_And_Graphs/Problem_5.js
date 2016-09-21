@@ -3,18 +3,27 @@
 */
 'use strict';
 
-module.exports = {
-    chapterFourProblemFiveBruteForceSolution: binaryTree => {
-        const values = binaryTree.inOrderTraversal();
+const assert = require('assert');
 
-        for (let i = 0; i < values.length - 1; i++) {
-            let currentValue = values[i];
-            let nextValue = values[i + 1];
-            if (currentValue > nextValue) {
-                return false;
-            }
+// O(N) time, N = number of nodes;
+// O(N) space
+// REDO (O(N) time, O(log N) space)
+function chapterFourProblemFiveBruteForceSolution(binaryTree) {
+    assert(typeof binaryTree === 'object');
+
+    const values = binaryTree.inOrderTraversal();
+
+    for (let i = 0; i < values.length - 1; i++) {
+        let currentValue = values[i];
+        let nextValue = values[i + 1];
+        if (currentValue > nextValue) {
+            return false;
         }
+    }
 
-        return true;
-    },
+    return true;
+}
+
+module.exports = {
+    chapterFourProblemFiveBruteForceSolution: chapterFourProblemFiveBruteForceSolution,
 };

@@ -5,9 +5,19 @@
 
 // assume indexOf is isSubstring method.
 
+const assert = require('assert');
+
+// O(M * N) time
+// O(M) space, M = inputOne
+// CORRECT NO REDO
+function chapterOneProblemNineBruteForceSolution(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
+    const doubleString = inputOne + inputOne;
+    return doubleString.indexOf(inputTwo) !== -1;
+}
+
 module.exports = {
-    chapterOneProblemNineBruteForceSolution: (stringOne, stringTwo) => {
-        const doubleString = stringOne + stringOne;
-        return doubleString.indexOf(stringTwo) !== -1;
-    },
+    chapterOneProblemNineBruteForceSolution: chapterOneProblemNineBruteForceSolution,
 };

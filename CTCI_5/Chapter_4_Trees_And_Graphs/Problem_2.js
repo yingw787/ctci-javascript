@@ -4,8 +4,12 @@
 'use strict';
 
 const BinarySearchTree = require('../Chapter_VII_Technical_Questions/BinarySearchTree');
+const assert = require('assert');
 
-function _recursivelyBuildSubTree(sortedSubArray, binarySearchTree) {
+function _recursivelyBuildSubTreeFromSortedArray(sortedSubArray, binarySearchTree) {
+    assert(typeof sortedSubArray === 'object');
+    assert(typeof binarySearchTree === 'object');
+
     if (sortedSubArray.length === 0) {
         return;
     }
@@ -16,16 +20,23 @@ function _recursivelyBuildSubTree(sortedSubArray, binarySearchTree) {
     const rightSubArray = sortedSubArray.slice(rootIndex + 1, sortedSubArray.length);
 
     binarySearchTree.insert(sortedSubArray[rootIndex], sortedSubArray[rootIndex]);
-    _recursivelyBuildSubTree(leftSubArray, binarySearchTree);
-    _recursivelyBuildSubTree(rightSubArray, binarySearchTree);
+    _recursivelyBuildSubTreeFromSortedArray(leftSubArray, binarySearchTree);
+    _recursivelyBuildSubTreeFromSortedArray(rightSubArray, binarySearchTree);
+}
+
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterFourProblemTwoBruteForceSolution(sortedArray) {
+    assert(typeof sortedArray === 'object');
+
+    const tree = new BinarySearchTree();
+
+    _recursivelyBuildSubTreeFromSortedArray(sortedArray, tree);
+
+    return tree;
 }
 
 module.exports = {
-    chapterFourProblemTwoBruteForceSolution: sortedArray => {
-        const tree = new BinarySearchTree();
-
-        _recursivelyBuildSubTree(sortedArray, tree);
-
-        return tree;
-    },
+    chapterFourProblemTwoBruteForceSolution: chapterFourProblemTwoBruteForceSolution,
 };

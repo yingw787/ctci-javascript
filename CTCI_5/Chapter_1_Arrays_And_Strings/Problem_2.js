@@ -3,28 +3,34 @@
 */
 'use strict';
 
-const _addStringToDictionary = (string, dictionary) => {
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charAt(i);
-        if (char in dictionary) {
-            dictionary[char]++;
+function _addStringToDictionary(input, dictionary) {
+    for (let letter of input) {
+        if (letter in dictionary) {
+            dictionary[letter]++;
         } else {
-            dictionary[char] = 1;
+            dictionary[letter] = 1;
         }
     }
-};
+}
+
+const assert = require('assert');
+
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemTwoBruteForceSolution(inputOne, inputTwo) {
+    assert(typeof inputOne === 'string');
+    assert(typeof inputTwo === 'string');
+
+    const dictionaryOne = {};
+    const dictionaryTwo = {};
+
+    _addStringToDictionary(inputOne, dictionaryOne);
+    _addStringToDictionary(inputTwo, dictionaryTwo);
+
+    return JSON.stringify(dictionaryOne) === JSON.stringify(dictionaryTwo);
+}
 
 module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemTwoBruteForceSolution: (stringOne, stringTwo) => {
-        const dictionaryOne = {};
-        const dictionaryTwo = {};
-
-        _addStringToDictionary(stringOne, dictionaryOne);
-        _addStringToDictionary(stringTwo, dictionaryTwo);
-
-        return JSON.stringify(dictionaryOne) === JSON.stringify(dictionaryTwo);
-    },
-    // book solution same as chapterOneProblemTwoBruteForceSolution
+    chapterOneProblemTwoBruteForceSolution: chapterOneProblemTwoBruteForceSolution,
 };

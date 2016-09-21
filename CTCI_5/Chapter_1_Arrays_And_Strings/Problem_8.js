@@ -3,36 +3,45 @@
 */
 'use strict';
 
-const _setRowToZeroes = (matrix, i) => {
+const assert = require('assert');
+
+function _setRowToZeroes(matrix, i) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = 0;
     }
-};
+}
 
-const _setColumnToZeroes = (matrix, j) => {
+function _setColumnToZeroes(matrix, j) {
     for (let i = 0; i < matrix.length; i++) {
         matrix[i][j] = 0;
     }
-};
+}
 
-module.exports = {
-    chapterOneProblemEightBruteForceSolution: matrix => {
-        const n = matrix.length;
-        const m = matrix[0].length;
+// O(MN * Math.max(M + N)) time
+// O(MN) space
+// REDO
+function chapterOneProblemEightBruteForceSolution(matrix) {
+    assert(typeof matrix === 'object');
 
-        const zeroes = [];
+    const n = matrix.length;
+    const m = matrix[0].length;
 
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < m; j++) {
-                if (matrix[i][j] === 0) {
-                    zeroes.push([i, j]);
-                }
+    const zeroes = [];
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (matrix[i][j] === 0) {
+                zeroes.push([i, j]);
             }
         }
+    }
 
-        for (let i = 0; i < zeroes.length; i++) {
-            _setRowToZeroes(matrix, zeroes[i][0]);
-            _setColumnToZeroes(matrix, zeroes[i][1]);
-        }
-    },
+    for (let i = 0; i < zeroes.length; i++) {
+        _setRowToZeroes(matrix, zeroes[i][0]);
+        _setColumnToZeroes(matrix, zeroes[i][1]);
+    }
+}
+
+module.exports = {
+    chapterOneProblemEightBruteForceSolution: chapterOneProblemEightBruteForceSolution,
 };

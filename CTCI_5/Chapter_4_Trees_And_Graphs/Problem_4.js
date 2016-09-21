@@ -3,7 +3,11 @@
 */
 'use strict';
 
+const assert = require('assert');
+
 function _recursiveHeight(treeNode) {
+    assert(typeof treeNode === 'object');
+
     if (!treeNode) {
         return -1;
     }
@@ -11,6 +15,7 @@ function _recursiveHeight(treeNode) {
 }
 
 function _markHeights(binaryTreeRootNode) {
+    assert(typeof binaryTreeRootNode === 'object');
 
     function recursiveInOrderTraversal(node) {
         if (node) {
@@ -28,6 +33,7 @@ function _markHeights(binaryTreeRootNode) {
 }
 
 function _isTreeBalanced(binaryTreeRootNode) {
+    assert(typeof binaryTreeRootNode === 'object');
 
     function recursiveInOrderTraversal(node) {
         if (node) {
@@ -50,10 +56,16 @@ function _isTreeBalanced(binaryTreeRootNode) {
     return recursiveInOrderTraversal(binaryTreeRootNode);
 }
 
-module.exports = {
-    chapterFourProblemFourBruteForceSolution: rootNode => {
+// O(N) time, N = number of nodes
+// O(1) space
+// REDO
+function chapterFourProblemFourBruteForceSolution(rootNode) {
+    assert(typeof rootNode === 'object');
 
-        _markHeights(rootNode);
-        return _isTreeBalanced(rootNode);
-    },
+    _markHeights(rootNode);
+    return _isTreeBalanced(rootNode);
+}
+
+module.exports = {
+    chapterFourProblemFourBruteForceSolution: chapterFourProblemFourBruteForceSolution,
 };

@@ -3,28 +3,35 @@
 */
 'use strict';
 
-module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterOneProblemSixBruteForceSolution: toBeCompressedString => {
-        let compressedString = '';
-        for (let i = 0; i < toBeCompressedString.length; i++) {
-            const currentCharacter = toBeCompressedString.charAt(i);
-            let count = 1;
-            while (i < toBeCompressedString.length) {
-                const nextCharacter = toBeCompressedString.charAt(i + 1);
-                if (JSON.stringify(nextCharacter) !== JSON.stringify(currentCharacter)) {
-                    break;
-                } else {
-                    count++;
-                    i++;
-                }
+const assert = require('assert');
+
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterOneProblemSixBruteForceSolution(uncompressedInput) {
+    assert(typeof uncompressedInput === 'string');
+
+    let compressedInput = '';
+    for (let i = 0; i < uncompressedInput.length; i++) {
+        const currentCharacter = uncompressedInput.charAt(i);
+        let count = 1;
+        while (i < uncompressedInput.length) {
+            const nextCharacter = uncompressedInput.charAt(i + 1);
+            if (JSON.stringify(nextCharacter) !== JSON.stringify(currentCharacter)) {
+                break;
+            } else {
+                count++;
+                i++;
             }
-            compressedString += currentCharacter + count;
         }
-        if (compressedString.length > toBeCompressedString.length) {
-            return toBeCompressedString;
-        }
-        return compressedString;
-    },
+        compressedInput += currentCharacter + count;
+    }
+    if (compressedInput.length > uncompressedInput.length) {
+        return uncompressedInput;
+    }
+    return compressedInput;
+}
+
+module.exports = {
+    chapterOneProblemSixBruteForceSolution: chapterOneProblemSixBruteForceSolution,
 };

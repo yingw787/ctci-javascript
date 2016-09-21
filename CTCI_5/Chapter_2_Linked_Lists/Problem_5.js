@@ -14,8 +14,9 @@
 'use strict';
 
 const SinglyLinkedList = require('../Chapter_VII_Technical_Questions/SinglyLinkedList');
+const assert = require('assert');
 
-const _reverse = singlyLinkedList => {
+function _reverse(singlyLinkedList) {
     const head = singlyLinkedList.head;
     if (!head || !head.next) { return; }
 
@@ -39,9 +40,15 @@ const _reverse = singlyLinkedList => {
     }
 
     singlyLinkedList.head = previousNode;
-};
+}
 
-const sumLists = (numberListOne, numberListTwo) => {
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterTwoProblemFiveBruteForceSolution(numberListOne, numberListTwo) {
+    assert(typeof numberListOne === 'object');
+    assert(typeof numberListTwo === 'object');
+
     const result = new SinglyLinkedList();
 
     let numberListOneCurrentNode = numberListOne.head;
@@ -78,19 +85,23 @@ const sumLists = (numberListOne, numberListTwo) => {
         }
     }
     return result;
-};
+}
+
+// O(N) time
+// O(N) space
+// CORRECT NO REDO
+function chapterTwoProblemFiveBruteForceSolutionFollowUp(numberListOne, numberListTwo) {
+    assert(typeof numberListOne === 'object');
+    assert(typeof numberListTwo === 'object');
+
+    _reverse(numberListOne);
+    _reverse(numberListTwo);
+    let result = chapterTwoProblemFiveBruteForceSolution(numberListOne, numberListTwo);
+    _reverse(result);
+    return result;
+}
 
 module.exports = {
-    // O(N) time
-    // O(N) space
-    chapterTwoProblemFiveBruteForceSolution: sumLists,
-    // O(N) time
-    // O(N) space
-    chapterTwoProblemFiveBruteForceSolutionFollowUp: (numberListOne, numberListTwo) => {
-        _reverse(numberListOne);
-        _reverse(numberListTwo);
-        let result = sumLists(numberListOne, numberListTwo);
-        _reverse(result);
-        return result;
-    },
+    chapterTwoProblemFiveBruteForceSolution: chapterTwoProblemFiveBruteForceSolution,
+    chapterTwoProblemFiveBruteForceSolutionFollowUp: chapterTwoProblemFiveBruteForceSolutionFollowUp,
 };

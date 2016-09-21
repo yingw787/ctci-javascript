@@ -3,6 +3,8 @@
 */
 'use strict';
 
+const assert = require('assert');
+
 // cannot use binary search tree specific methods.
 function _DFS(binaryTreeRootNode) {
     let values = [];
@@ -52,27 +54,35 @@ function _checkWhichSubtree(subtreeRootNode, compareNode) {
     }
 }
 
-module.exports = {
-    chapterFourProblemEightBruteForceSolution: (binaryTree, nodeOne, nodeTwo) => {
-        // check if node exists from root. If so, check whether nodeOne and nodeTwo exist on same subtree. if so, move to subtree and repeat. When they are not on the same subtree, return that node.
+// O(N), N = number of nodes in binaryTree
+// O(1) space
+// CORRECT NO REDO
+function chapterFourProblemEightBruteForceSolution(binaryTree, nodeOne, nodeTwo) {
+    // check if node exists from root. If so, check whether nodeOne and nodeTwo exist on same subtree. if so, move to subtree and repeat. When they are not on the same subtree, return that node.
+    assert(typeof binaryTree === 'object');
+    assert(typeof nodeOne === 'object');
+    assert(typeof nodeTwo === 'object');
 
-        let currentNode = binaryTree.root;
+    let currentNode = binaryTree.root;
 
-        let nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
-        let nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
+    let nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
+    let nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
 
-        while (nodeOneSubtree === nodeTwoSubtree) {
-            if (nodeOneSubtree === 'left') {
-                currentNode = currentNode.leftChild;
-                nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
-                nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
-            } else {
-                currentNode = currentNode.rightChild;
-                nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
-                nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
-            }
+    while (nodeOneSubtree === nodeTwoSubtree) {
+        if (nodeOneSubtree === 'left') {
+            currentNode = currentNode.leftChild;
+            nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
+            nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
+        } else {
+            currentNode = currentNode.rightChild;
+            nodeOneSubtree = _checkWhichSubtree(currentNode, nodeOne);
+            nodeTwoSubtree = _checkWhichSubtree(currentNode, nodeTwo);
         }
+    }
 
-        return currentNode.key;
-    },
+    return currentNode.key;
+}
+
+module.exports = {
+    chapterFourProblemEightBruteForceSolution: chapterFourProblemEightBruteForceSolution,
 };

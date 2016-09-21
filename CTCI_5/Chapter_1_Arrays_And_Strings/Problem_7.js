@@ -3,23 +3,29 @@
 */
 'use strict';
 
-module.exports = {
-    // O(N) time, N being number of elements
-    // O(1) space, done in place
-    chapterOneProblemSevenBruteForceSolution: grid => {
-        const n = grid.length;
-        for (let i = 0; i < Math.floor(n / 2); i++) {
-            for (let j = i; j < n - 1 - i; j++) {
-                const leftTop = grid[i][j];
-                const leftBottom = grid[n - 1 - j][i];
-                const rightBottom = grid[n - 1 - i][n - 1 - j];
-                const rightTop = grid[j][n - 1 - i];
+const assert = require('assert');
 
-                grid[i][j] = leftBottom;
-                grid[n - 1 - j][i] = rightBottom;
-                grid[n - 1 - i][n - 1 - j] = rightTop;
-                grid[j][n - 1 - i] = leftTop;
-            }
+// O(N) time, N being number of elements
+// O(1) space, done in place
+// CORRECT NO REDO
+function chapterOneProblemSevenBruteForceSolution(grid) {
+    assert(typeof grid === 'object');
+    const n = grid.length;
+    for (let i = 0; i < Math.floor(n / 2); i++) {
+        for (let j = i; j < n - 1 - i; j++) {
+            const leftTop = grid[i][j];
+            const leftBottom = grid[n - 1 - j][i];
+            const rightBottom = grid[n - 1 - i][n - 1 - j];
+            const rightTop = grid[j][n - 1 - i];
+
+            grid[i][j] = leftBottom;
+            grid[n - 1 - j][i] = rightBottom;
+            grid[n - 1 - i][n - 1 - j] = rightTop;
+            grid[j][n - 1 - i] = leftTop;
         }
-    },
+    }
+}
+
+module.exports = {
+    chapterOneProblemSevenBruteForceSolution: chapterOneProblemSevenBruteForceSolution,
 };

@@ -3,9 +3,11 @@
 */
 'use strict';
 
-const _addStringToDictionary = (string, dictionary) => {
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charAt(i);
+const assert = require('assert');
+
+function _decomposeInputIntoLetterToFrequencyMapping(input, dictionary) {
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charAt(i);
         if (JSON.stringify(char) === JSON.stringify(' ')) { continue; }
         if (char in dictionary) {
             dictionary[char]++;
@@ -13,22 +15,29 @@ const _addStringToDictionary = (string, dictionary) => {
             dictionary[char] = 1;
         }
     }
-};
+}
+
+// O(N) time, N being size of string
+// O(N) space, N being size of string
+// REDO, CORRECT SOLUTION O(N) time O(1) space
+function chapterOneProblemFourBruteForceSolution(input) {
+    assert(typeof input === 'string');
+    const letterToFrequency = {};
+    let hasAlreadySeenLetterWithOddFrequency = false;
+    _decomposeInputIntoLetterToFrequencyMapping(input, letterToFrequency);
+    for (let letter of Object.keys(letterToFrequency)) {
+        const isLetterFrequencyEven = letterToFrequency[letter] % 2;
+        if (isLetterFrequencyEven) {
+            if (hasAlreadySeenLetterWithOddFrequency) {
+                return false;
+            }
+
+            hasAlreadySeenLetterWithOddFrequency = true;
+        }
+    }
+    return true;
+}
 
 module.exports = {
-    chapterOneProblemFourBruteForceSolution: string => {
-        const dictionary = {};
-        let oneOdd = false;
-        _addStringToDictionary(string, dictionary);
-        for (const key in dictionary) {
-            if (dictionary[key] % 2 !== 0) {
-                if (oneOdd) {
-                    return false;
-                } else {
-                    oneOdd = true;
-                }
-            }
-        }
-        return true;
-    },
+    chapterOneProblemFourBruteForceSolution: chapterOneProblemFourBruteForceSolution,
 };
