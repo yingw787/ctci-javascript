@@ -6,7 +6,7 @@
     Write code to simulate your approach.
 */
 
-// CORRECT NO REDO
+// REDO (TRY DIFFERENT APPROACH) (MINIMUM NUMBER OF DAYS 7)
 /*
     KEY: You can put any number of drops on a test trip at once.
     KEY: Fastest way to solve this is to use all the usable test strips at once.
@@ -33,8 +33,4 @@
     Return the strip that has returns positive.
 
     NUMBER OF DAYS: 28
-
-    // BOOK SOLUTION ASSUMES YOU CAN START A TEST WHILE ANOTHER TEST IS RUNNING
-
-    NUMBER OF DAYS: 10
 */
