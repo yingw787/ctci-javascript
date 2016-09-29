@@ -17,3 +17,17 @@ describe('chapterTenProblemFourBruteForceSolution', function() {
         assert.equal(indexOfValue, 5);
     });
 });
+
+describe('chapterTenProblemFourImprovedSolution', function() {
+    it('should throw error when given wrong type', function() {
+        const sortedListy = 5;
+        expect(function() {
+            Problem_4.chapterTenProblemFourImprovedSolution(sortedListy, 0);
+        }).to.throw(Error);
+    });
+    it('should return 5 from [1, 2, 3, 4, 5, 6, 7], 6', function() {
+        const sortedListy = [1, 2, 3, 4, 5, 6, 7];
+        const indexOfValue = Problem_4.chapterTenProblemFourImprovedSolution(sortedListy, 6);
+        assert.equal(indexOfValue, 5);
+    });
+});

@@ -18,6 +18,46 @@ function chapterTenProblemFourBruteForceSolution(listyOfSortedPositiveIntegers, 
     return i;
 }
 
+function _findApproximateLength(listyOfSortedPositiveIntegers) {
+    if (listyOfSortedPositiveIntegers[0] === -1) {
+        return 0;
+    }
+    let i = 1;
+    while (listyOfSortedPositiveIntegers[i]) {
+        i *= 2;
+    }
+    return i;
+}
+
+// O(log N) time
+// O(1) space
+function chapterTenProblemFourImprovedSolution(listyOfSortedPositiveIntegers, value) {
+    assert(typeof listyOfSortedPositiveIntegers === 'object');
+    assert(typeof value === 'number');
+
+    const length = _findApproximateLength(listyOfSortedPositiveIntegers);
+    if (!length) {
+        return -1;
+    }
+
+    let lowIndex = 0;
+    let highIndex = length - 1;
+    let middleIndex;
+
+    while (lowIndex <= highIndex) {
+        middleIndex = Math.floor((lowIndex + highIndex) / 2);
+        if (listyOfSortedPositiveIntegers[middleIndex] < value) {
+            lowIndex = middleIndex + 1;
+        } else if (listyOfSortedPositiveIntegers[middleIndex] > value || !listyOfSortedPositiveIntegers[middleIndex]) {
+            highIndex = middleIndex - 1;
+        } else {
+            return middleIndex;
+        }
+    }
+    return -1;
+}
+
 module.exports = {
     chapterTenProblemFourBruteForceSolution: chapterTenProblemFourBruteForceSolution,
+    chapterTenProblemFourImprovedSolution: chapterTenProblemFourImprovedSolution,
 };
