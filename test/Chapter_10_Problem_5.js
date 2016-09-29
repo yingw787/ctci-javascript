@@ -12,10 +12,26 @@ describe('chapterTenProblemFiveBruteForceSolution', function() {
             Problem_5.chapterTenProblemFiveBruteForceSolution(sortedListy, value);
         }).to.throw(Error);
     });
-    it('should return 5 from [1, 2, 3, 4, 5, 6, 7], 6', function() {
+    it("should return 4 from ['at', '', '', '', 'ball', '', '', 'car', '', '', 'dad', '', ''], 'ball'", function() {
         const sortedArrayOfStrings = ['at', '', '', '', 'ball', '', '', 'car', '', '', 'dad', '', ''];
         const value = 'ball';
         const indexOfValue = Problem_5.chapterTenProblemFiveBruteForceSolution(sortedArrayOfStrings, value);
+        assert.equal(indexOfValue, 4);
+    });
+});
+
+describe('chapterTenProblemFiveImprovedSolution', function() {
+    it('should throw error when given wrong type', function() {
+        const sortedListy = 5;
+        const value = 6;
+        expect(function() {
+            Problem_5.chapterTenProblemFiveImprovedSolution(sortedListy, value);
+        }).to.throw(Error);
+    });
+    it("should return 4 from ['at', '', '', '', 'ball', '', '', 'car', '', '', 'dad', '', ''], 'ball'", function() {
+        const sortedArrayOfStrings = ['at', '', '', '', 'ball', '', '', 'car', '', '', 'dad', '', ''];
+        const value = 'ball';
+        const indexOfValue = Problem_5.chapterTenProblemFiveImprovedSolution(sortedArrayOfStrings, value);
         assert.equal(indexOfValue, 4);
     });
 });
