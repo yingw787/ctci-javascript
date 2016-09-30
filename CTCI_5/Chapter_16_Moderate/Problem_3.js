@@ -27,6 +27,9 @@ function _createInterceptFromSlopeAndYIntercept(slopeAndYInterceptOne, slopeAndY
     };
 }
 
+// O(1) time
+// O(1) space
+// CORRECT NO REDO
 function chapterSixteenProblemThreeBruteForceSolution(lineSegmentOne, lineSegmentTwo) {
     assert(typeof lineSegmentOne === 'object');
     assert(typeof lineSegmentTwo === 'object');
