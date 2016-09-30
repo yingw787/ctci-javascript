@@ -5,6 +5,9 @@
 
 const assert = require('assert');
 
+// O(N * M), N = length of arrayOfIntegersOne, M = length of arrayOfIntegersTwo
+// O(1) space
+// REDO O(N * log N + M * log M) time, O(1) space
 function chapterSixteenProblemSixBruteForceSolution(arrayOfIntegersOne, arrayOfIntegersTwo) {
     assert(typeof arrayOfIntegersOne === 'object');
     assert(typeof arrayOfIntegersTwo === 'object');
