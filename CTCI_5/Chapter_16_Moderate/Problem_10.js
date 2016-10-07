@@ -18,7 +18,7 @@ function chapterSixteenProblemTenBruteForceSolution(listOfPeopleObjects) {
     for (let i = 0; i < listOfPeopleObjects.length; i++) {
         const currentPerson = listOfPeopleObjects[i];
         assert(typeof currentPerson.birth === 'number' && typeof currentPerson.death === 'number');
-        if (currentPerson.birth < currentPerson.death) {
+        if (currentPerson.birth > currentPerson.death) {
             throw new Error('invalid dates; birth date must be before death date.');
         }
 
@@ -42,17 +42,19 @@ function chapterSixteenProblemTenBruteForceSolution(listOfPeopleObjects) {
     }
 
     let maximumPeopleAliveYear = null;
+    let maximumPeopleAlive = 0;
+    let currentNumberOfPeopleAlive = 0;
 
     for (let i = lowestBirthYear; i <= highestBirthYear; i++) {
-        let currentMaximumPeopleAliveYear = maximumPeopleAliveYear;
         if (i in birthYears) {
-            currentMaximumPeopleAliveYear += birthYears[i];
+            currentNumberOfPeopleAlive += birthYears[i];
         }
         if (i in deathYears) {
-            currentMaximumPeopleAliveYear -= deathYears[i];
+            currentNumberOfPeopleAlive -= deathYears[i];
         }
-        if (currentMaximumPeopleAliveYear > maximumPeopleAliveYear) {
-            maximumPeopleAliveYear = currentMaximumPeopleAliveYear;
+        if (currentNumberOfPeopleAlive > maximumPeopleAlive) {
+            maximumPeopleAlive = currentNumberOfPeopleAlive;
+            maximumPeopleAliveYear = i;
         }
     }
     return maximumPeopleAliveYear;
