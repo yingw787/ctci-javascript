@@ -57,12 +57,13 @@ function subtract(a, b) {
 
 // O(k) time, k = Math.max(a, b)
 // O(1) space
+// REDO AS QUOTIENT NEEDS TO BE MATH.FLOOR, NOT MATH.CEIL
 function divide(a, b) {
     assert(typeof a === 'number' && typeof b === 'number');
     if (a % 1 !== 0 || b % 1 !== 0) {
         throw new Error('a and b must be integers.');
     }
-    if (b > a) {
+    if (Math.abs(b) > Math.abs(a)) {
         return 0;
     }
     const isNegative = a < 0 ^ b < 0;
