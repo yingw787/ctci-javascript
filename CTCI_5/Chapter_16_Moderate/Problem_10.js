@@ -7,6 +7,7 @@ const assert = require('assert');
 
 // O(N) time, N = listOfPeopleObjects.length;
 // O(N) space
+// TODO: REVIEW
 function chapterSixteenProblemTenBruteForceSolution(listOfPeopleObjects) {
     // the year will always fall on a birth year, since it doesn't change when it's not a birth/death year and it only decrements on a death year.
     assert(typeof listOfPeopleObjects === 'object');
