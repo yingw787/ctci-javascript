@@ -5,6 +5,9 @@
 
 const assert = require('assert');
 
+// O(N) time, N = arrayOfPoints.length
+// O(N) space, N = arrayOfPoints.length
+// REDO SOME CASES NOT HANDLED
 function chapterSixteenProblemFourteenBruteForceSolution(arrayOfPoints) {
     _checkArrayOfPoints(arrayOfPoints);
     const arrayOfLineSlopesAndYIntercepts = [];
