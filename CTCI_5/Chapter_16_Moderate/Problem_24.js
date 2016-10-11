@@ -5,6 +5,9 @@
 
 const assert = require('assert');
 
+// O(N) time
+// O(N) space
+// REDO FOR OPTIMIZED SOLUTION
 function chapterSixteenProblemTwentyFourBruteForceSolution(arrayOfIntegers, value) {
     _assertCorrectType(arrayOfIntegers, value);
 
