@@ -8,13 +8,15 @@
 */
 'use strict';
 
-const assert = require('assert');
+// GIVEN UP
+// REDO WITH CODE
 
-//
-function chapterSixteenProblemTwentySixBruteForceSolution(expression) {
-    assert(typeof expression === 'string');
-}
+/*
+    BOOK SOLUTION
 
-module.exports = {
-    chapterSixteenProblemTwentySixBruteForceSolution: chapterSixteenProblemTwentySixBruteForceSolution,
-};
+    You can still process the expression from left to right, just make sure to compute the result directly when you encounter a multiply or a divide operation. Keep a running list of the operator and the number being processed, as well as the result. Process results directly if multiply or divide is encountered, otherwise process with result.
+
+    Alternative approach is to use a number and an operator stack, and to compute the operation and push it back in if the operation priority is greater than the one below it.
+
+    READ SOLUTION FOR MORE DETAILS
+*/
