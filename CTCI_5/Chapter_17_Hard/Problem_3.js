@@ -8,7 +8,7 @@ const assert = require('assert');
 // O(?) time (worst-case never finish)
 // O(M + N) space
 // REDO WITH DEFINITIVE TIME
-function chapterSeventeenProblemTwoBruteForceSolution(arrayOfIntegers, m) {
+function chapterSeventeenProblemThreeBruteForceSolution(arrayOfIntegers, m) {
     assert(typeof arrayOfIntegers === 'object');
     for (let i = 0; i < arrayOfIntegers.length; i++) {
         assert(typeof arrayOfIntegers[i] === 'number' && arrayOfIntegers[i] % 1 === 0);
@@ -39,5 +39,5 @@ function _checkMUniqueValuesExist(arrayOfIntegers, m) {
 }
 
 module.exports = {
-    chapterSeventeenProblemTwoBruteForceSolution: chapterSeventeenProblemTwoBruteForceSolution,
+    chapterSeventeenProblemThreeBruteForceSolution: chapterSeventeenProblemThreeBruteForceSolution,
 };
