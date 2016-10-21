@@ -26,6 +26,7 @@ function chapterSixteenProblemSixBruteForceSolution(arrayOfIntegersOne, arrayOfI
 
 // O(A * log A + B * log B) time, A = length of arrayOfIntegersOne, B = arrayOfIntegersTwo
 // O(A + B) space
+// TODO: REVIEW
 function chapterSixteenProblemSixBookSolution(arrayOfIntegersOne, arrayOfIntegersTwo) {
     _assertArrayOfIntegers(arrayOfIntegersOne);
     _assertArrayOfIntegers(arrayOfIntegersTwo);
